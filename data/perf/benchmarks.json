@@ -1,0 +1,111 @@
+{
+ "host": {
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "cores": 12,
+  "ram_gb": 31.7,
+  "python": "3.14.2",
+  "duckdb": "2.0.0"
+ },
+ "results": [
+  {
+   "benchmark_id": "pivot_vs_mart",
+   "description": "Revenue, net income and total assets per individual company-year: pivot the long facts every time versus read the precomputed mart.",
+   "sql": "SELECT nit, fiscal_year, max(value_cop) FILTER (WHERE line = 'revenue') AS revenue, max(value_cop) FILTER (WHERE line = 'net_income') AS net_income, max(value_cop) FILTER (WHERE line = 'total_assets') AS total_assets FROM stg_niif_facts WHERE period_kind = 'current' AND statement_scope = 'individual' GROUP BY nit, fiscal_year",
+   "variant": "pivot long facts (stg_niif_facts)",
+   "rows": 3835370,
+   "runs": 9,
+   "median_ms": 390.92,
+   "p95_ms": 500.64,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "pivot_vs_mart",
+   "description": "Revenue, net income and total assets per individual company-year: pivot the long facts every time versus read the precomputed mart.",
+   "sql": "SELECT nit, fiscal_year, revenue, net_income, total_assets FROM company_year WHERE statement_scope = 'individual'",
+   "variant": "read mart (company_year)",
+   "rows": 159915,
+   "runs": 9,
+   "median_ms": 267.71,
+   "p95_ms": 361.44,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "csv_vs_parquet_scan",
+   "description": "Same 581620 raw income-statement rows of FY2024 aggregated from the stored CSV (90 MB) and from a ZSTD Parquet copy (7 MB).",
+   "sql": "SELECT periodo, count(*) AS facts, sum(TRY_CAST(valor AS DOUBLE)) AS total FROM read_csv('data/raw/supersoc_niif_income/fy2024/5ef6e70cbbad86d7ed35d120dd8c10be3ed6c8d9b73d4d42e20ff44e457d54c1.csv', header=true, all_varchar=true) GROUP BY periodo",
+   "variant": "CSV scan",
+   "rows": 581620,
+   "runs": 9,
+   "median_ms": 266.27,
+   "p95_ms": 312.46,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "csv_vs_parquet_scan",
+   "description": "Same 581620 raw income-statement rows of FY2024 aggregated from the stored CSV (90 MB) and from a ZSTD Parquet copy (7 MB).",
+   "sql": "SELECT periodo, count(*) AS facts, sum(TRY_CAST(valor AS DOUBLE)) AS total FROM read_parquet('warehouse/bench/income_fy2024.parquet') GROUP BY periodo",
+   "variant": "Parquet scan",
+   "rows": 581620,
+   "runs": 9,
+   "median_ms": 32.59,
+   "p95_ms": 38.84,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "parquet_filter",
+   "description": "Sum of the 22 statement-line columns of the published company_year.parquet: all rows, a year filter (the file is sorted by nit, so row-group statistics cannot prune it) and a single-company filter that prunes row groups on the sorted nit column.",
+   "sql": "SELECT sum(revenue), sum(cost_of_sales), sum(gross_profit), sum(admin_expenses), sum(selling_expenses), sum(operating_income), sum(finance_income), sum(finance_costs), sum(profit_before_tax), sum(income_tax), sum(net_income), sum(total_assets), sum(current_assets), sum(cash), sum(receivables), sum(inventories), sum(ppe), sum(total_liabilities), sum(current_liabilities), sum(noncurrent_liabilities), sum(total_equity), sum(operating_cash_flow) FROM read_parquet('web/public/data/marts/company_year.parquet')",
+   "variant": "unfiltered",
+   "rows": 187151,
+   "runs": 9,
+   "median_ms": 81.07,
+   "p95_ms": 111.64,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "parquet_filter",
+   "description": "Sum of the 22 statement-line columns of the published company_year.parquet: all rows, a year filter (the file is sorted by nit, so row-group statistics cannot prune it) and a single-company filter that prunes row groups on the sorted nit column.",
+   "sql": "SELECT sum(revenue), sum(cost_of_sales), sum(gross_profit), sum(admin_expenses), sum(selling_expenses), sum(operating_income), sum(finance_income), sum(finance_costs), sum(profit_before_tax), sum(income_tax), sum(net_income), sum(total_assets), sum(current_assets), sum(cash), sum(receivables), sum(inventories), sum(ppe), sum(total_liabilities), sum(current_liabilities), sum(noncurrent_liabilities), sum(total_equity), sum(operating_cash_flow) FROM read_parquet('web/public/data/marts/company_year.parquet') WHERE fiscal_year = 2024",
+   "variant": "fiscal_year = 2024",
+   "rows": 187151,
+   "runs": 9,
+   "median_ms": 72.84,
+   "p95_ms": 96.56,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "parquet_filter",
+   "description": "Sum of the 22 statement-line columns of the published company_year.parquet: all rows, a year filter (the file is sorted by nit, so row-group statistics cannot prune it) and a single-company filter that prunes row groups on the sorted nit column.",
+   "sql": "SELECT sum(revenue), sum(cost_of_sales), sum(gross_profit), sum(admin_expenses), sum(selling_expenses), sum(operating_income), sum(finance_income), sum(finance_costs), sum(profit_before_tax), sum(income_tax), sum(net_income), sum(total_assets), sum(current_assets), sum(cash), sum(receivables), sum(inventories), sum(ppe), sum(total_liabilities), sum(current_liabilities), sum(noncurrent_liabilities), sum(total_equity), sum(operating_cash_flow) FROM read_parquet('web/public/data/marts/company_year.parquet') WHERE nit = '900559155'",
+   "variant": "nit = '900559155'",
+   "rows": 187151,
+   "runs": 9,
+   "median_ms": 64.17,
+   "p95_ms": 97.6,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "threads",
+   "description": "Group-by with a median over all staged NIIF facts, run with one DuckDB thread and with every logical core.",
+   "sql": "SELECT fiscal_year, statement_scope, line, count(*) AS facts, sum(value_cop) AS total, quantile_cont(value_cop, 0.5) AS median FROM stg_niif_facts GROUP BY ALL",
+   "variant": "1 thread",
+   "rows": 8758845,
+   "runs": 9,
+   "median_ms": 1219.89,
+   "p95_ms": 1481.51,
+   "evidence": "MEASURED"
+  },
+  {
+   "benchmark_id": "threads",
+   "description": "Group-by with a median over all staged NIIF facts, run with one DuckDB thread and with every logical core.",
+   "sql": "SELECT fiscal_year, statement_scope, line, count(*) AS facts, sum(value_cop) AS total, quantile_cont(value_cop, 0.5) AS median FROM stg_niif_facts GROUP BY ALL",
+   "variant": "12 threads",
+   "rows": 8758845,
+   "runs": 9,
+   "median_ms": 325.63,
+   "p95_ms": 341.41,
+   "evidence": "MEASURED"
+  }
+ ]
+}

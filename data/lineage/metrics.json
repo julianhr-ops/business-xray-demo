@@ -1,0 +1,1675 @@
+[
+ {
+  "metric_id": "revenue",
+  "label_es": "Ingresos operacionales",
+  "label_en": "Operating revenue",
+  "formula": "revenue of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.revenue"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "cost_of_sales",
+  "label_es": "Costo de ventas",
+  "label_en": "Cost of sales",
+  "formula": "cost_of_sales of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.cost_of_sales"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "cost_of_sales"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Costo de ventas') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "gross_profit",
+  "label_es": "Utilidad bruta",
+  "label_en": "Gross profit",
+  "formula": "gross_profit of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.gross_profit"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "gross_profit"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia bruta') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "admin_expenses",
+  "label_es": "Gastos de administración",
+  "label_en": "Administrative expenses",
+  "formula": "admin_expenses of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.admin_expenses"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "admin_expenses"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Gastos de administraci_n') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "selling_expenses",
+  "label_es": "Gastos de ventas",
+  "label_en": "Selling expenses",
+  "formula": "selling_expenses of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.selling_expenses"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "selling_expenses"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Gastos de ventas') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "operating_income",
+  "label_es": "Utilidad operacional",
+  "label_en": "Operating income",
+  "formula": "operating_income of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.operating_income"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "operating_income"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia (p_rdida) por actividades de operaci_n') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "finance_income",
+  "label_es": "Ingresos financieros",
+  "label_en": "Finance income",
+  "formula": "finance_income of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.finance_income"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "finance_income"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos financieros') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "finance_costs",
+  "label_es": "Costos financieros",
+  "label_en": "Finance costs",
+  "formula": "finance_costs of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.finance_costs"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "finance_costs"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Costos financieros') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "profit_before_tax",
+  "label_es": "Utilidad antes de impuestos",
+  "label_en": "Profit before tax",
+  "formula": "profit_before_tax of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.profit_before_tax"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "profit_before_tax"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia (p_rdida), antes de impuestos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "income_tax",
+  "label_es": "Impuesto de renta",
+  "label_en": "Income tax",
+  "formula": "income_tax of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.income_tax"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "income_tax"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingreso (gasto) por impuestos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "net_income",
+  "label_es": "Utilidad neta",
+  "label_en": "Net income",
+  "formula": "net_income of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.net_income"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "net_income"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "total_assets",
+  "label_es": "Activos totales",
+  "label_en": "Total assets",
+  "formula": "total_assets of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.total_assets"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "total_assets"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de activos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "current_assets",
+  "label_es": "Activos corrientes",
+  "label_en": "Current assets",
+  "formula": "current_assets of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.current_assets"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "current_assets"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Activos corrientes totales') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "cash",
+  "label_es": "Efectivo y equivalentes",
+  "label_en": "Cash and equivalents",
+  "formula": "cash of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.cash"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "cash"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Efectivo y equivalentes al efectivo') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "receivables",
+  "label_es": "Cuentas por cobrar comerciales",
+  "label_en": "Trade receivables",
+  "formula": "receivables of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.receivables"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "receivables"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Cuentas comerciales por cobrar y otras cuentas por cobrar corrientes') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "inventories",
+  "label_es": "Inventarios",
+  "label_en": "Inventories",
+  "formula": "inventories of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.inventories"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "inventories"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Inventarios corrientes') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "ppe",
+  "label_es": "Propiedades, planta y equipo",
+  "label_en": "Property, plant and equipment",
+  "formula": "ppe of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.ppe"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "ppe"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Propiedades, planta y equipo') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "total_liabilities",
+  "label_es": "Pasivos totales",
+  "label_en": "Total liabilities",
+  "formula": "total_liabilities of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.total_liabilities"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "total_liabilities"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total pasivos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "current_liabilities",
+  "label_es": "Pasivos corrientes",
+  "label_en": "Current liabilities",
+  "formula": "current_liabilities of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.current_liabilities"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "current_liabilities"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Pasivos corrientes totales' OR concepto LIKE 'Total pasivos corrientes distintos de los pasivos incluidos en grupos de activos para su disposici_n clasificados como mantenidos para la venta') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "noncurrent_liabilities",
+  "label_es": "Pasivos no corrientes",
+  "label_en": "Non-current liabilities",
+  "formula": "noncurrent_liabilities of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.noncurrent_liabilities"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "noncurrent_liabilities"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de pasivos no corrientes') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "total_equity",
+  "label_es": "Patrimonio total",
+  "label_en": "Total equity",
+  "formula": "total_equity of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.total_equity"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "total_equity"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Patrimonio total') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "operating_cash_flow",
+  "label_es": "Flujo de caja operacional",
+  "label_en": "Operating cash flow",
+  "formula": "operating_cash_flow of the current filing",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.operating_cash_flow"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "operating_cash_flow"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:ctcp-462n",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Flujos de efectivo netos procedentes de (utilizados en) actividades de operaci_n') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "gross_margin",
+  "label_es": "Margen bruto",
+  "label_en": "Gross margin",
+  "formula": "gross_profit / revenue",
+  "sql_expression": "CASE WHEN revenue > 0 THEN gross_profit / revenue END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.gross_margin"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "gross_profit"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias' OR concepto LIKE 'Ganancia bruta') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "operating_margin",
+  "label_es": "Margen operacional",
+  "label_en": "Operating margin",
+  "formula": "operating_income / revenue",
+  "sql_expression": "CASE WHEN revenue > 0 THEN operating_income / revenue END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.operating_margin"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "operating_income"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias' OR concepto LIKE 'Ganancia (p_rdida) por actividades de operaci_n') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "net_margin",
+  "label_es": "Margen neto",
+  "label_en": "Net margin",
+  "formula": "net_income / revenue",
+  "sql_expression": "CASE WHEN revenue > 0 THEN net_income / revenue END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.net_margin"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "net_income"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias' OR concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "roa",
+  "label_es": "Rentabilidad del activo (ROA)",
+  "label_en": "Return on assets (ROA)",
+  "formula": "net_income / total_assets",
+  "sql_expression": "CASE WHEN total_assets > 0 THEN net_income / total_assets END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.roa"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "net_income",
+     "total_assets"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de activos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "roe",
+  "label_es": "Rentabilidad del patrimonio (ROE)",
+  "label_en": "Return on equity (ROE)",
+  "formula": "net_income / total_equity",
+  "sql_expression": "CASE WHEN total_equity > 0 THEN net_income / total_equity END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.roe"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "net_income",
+     "total_equity"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Patrimonio total') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "current_ratio",
+  "label_es": "Razón corriente",
+  "label_en": "Current ratio",
+  "formula": "current_assets / current_liabilities",
+  "sql_expression": "CASE WHEN current_liabilities > 0 THEN current_assets / current_liabilities END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.current_ratio"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "current_assets",
+     "current_liabilities"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Activos corrientes totales' OR concepto LIKE 'Pasivos corrientes totales' OR concepto LIKE 'Total pasivos corrientes distintos de los pasivos incluidos en grupos de activos para su disposici_n clasificados como mantenidos para la venta') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "debt_ratio",
+  "label_es": "Nivel de endeudamiento",
+  "label_en": "Debt ratio",
+  "formula": "total_liabilities / total_assets",
+  "sql_expression": "CASE WHEN total_assets > 0 THEN total_liabilities / total_assets END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.debt_ratio"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "total_liabilities",
+     "total_assets"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total pasivos' OR concepto LIKE 'Total de activos') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "equity_multiplier",
+  "label_es": "Multiplicador del patrimonio",
+  "label_en": "Equity multiplier",
+  "formula": "total_assets / total_equity",
+  "sql_expression": "CASE WHEN total_equity > 0 THEN total_assets / total_equity END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.equity_multiplier"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "total_assets",
+     "total_equity"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de activos' OR concepto LIKE 'Patrimonio total') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "revenue_growth_nominal",
+  "label_es": "Crecimiento nominal de ingresos",
+  "label_en": "Nominal revenue growth",
+  "formula": "revenue / revenue_prior - 1",
+  "sql_expression": "CASE WHEN revenue_prior > 0 AND revenue IS NOT NULL THEN revenue / revenue_prior - 1 END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.revenue_growth_nominal"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "revenue_prior"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Anterior' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ },
+ {
+  "metric_id": "revenue_growth_real",
+  "label_es": "Crecimiento real de ingresos",
+  "label_en": "Real revenue growth",
+  "formula": "(revenue / revenue_prior) / (1 + inflation_dec_yoy) - 1",
+  "sql_expression": "CASE WHEN revenue_prior > 0 AND revenue IS NOT NULL THEN (revenue / revenue_prior) / (1 + inflation_dec_yoy) - 1 END",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.company_year.revenue_growth_real"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "revenue_prior"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Anterior' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "inflation_dec_yoy"
+    ]
+   },
+   {
+    "node": "stg_ipc_index",
+    "columns": [
+     "year",
+     "month",
+     "ipc_index"
+    ]
+   },
+   {
+    "node": "source:anex-IPC-Indices",
+    "filter": "sheet IndicesIPC, rows Mes = Diciembre of year and year - 1"
+   }
+  ]
+ },
+ {
+  "metric_id": "revenue_usd",
+  "label_es": "Ingresos en USD",
+  "label_en": "Revenue in USD",
+  "formula": "revenue / trm_avg",
+  "sql_expression": "revenue / trm_avg",
+  "unit": "USD",
+  "path": [
+   {
+    "node": "mart.company_year.revenue_usd"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "trm_avg"
+    ]
+   },
+   {
+    "node": "stg_trm",
+    "columns": [
+     "valid_from",
+     "valid_to",
+     "trm_cop"
+    ]
+   },
+   {
+    "node": "source:32sa-8pi3",
+    "filter": "unidad = 'COP', every calendar day of the fiscal year"
+   }
+  ]
+ },
+ {
+  "metric_id": "revenue_real_2024_cop",
+  "label_es": "Ingresos en pesos de diciembre 2024",
+  "label_en": "Revenue in December 2024 pesos",
+  "formula": "revenue * ipc_dec_2024 / ipc_dec_index",
+  "sql_expression": "revenue * ipc_dec_2024 / ipc_dec_index",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.company_year.revenue_real_2024_cop"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "ipc_dec_index"
+    ]
+   },
+   {
+    "node": "stg_ipc_index",
+    "columns": [
+     "year",
+     "month",
+     "ipc_index"
+    ]
+   },
+   {
+    "node": "source:anex-IPC-Indices",
+    "filter": "sheet IndicesIPC, row Mes = Diciembre"
+   }
+  ]
+ },
+ {
+  "metric_id": "ipc_dec_index",
+  "label_es": "Índice IPC diciembre",
+  "label_en": "December CPI index",
+  "formula": "DANE total CPI, December, base December 2018 = 100",
+  "sql_expression": "",
+  "unit": "index",
+  "path": [
+   {
+    "node": "mart.macro_year.ipc_dec_index"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "ipc_dec_index"
+    ]
+   },
+   {
+    "node": "stg_ipc_index",
+    "columns": [
+     "year",
+     "month",
+     "ipc_index"
+    ]
+   },
+   {
+    "node": "source:anex-IPC-Indices",
+    "filter": "sheet IndicesIPC, row Mes = Diciembre"
+   }
+  ]
+ },
+ {
+  "metric_id": "inflation_dec_yoy",
+  "label_es": "Inflación diciembre a diciembre",
+  "label_en": "December-to-December inflation",
+  "formula": "ipc_dec / ipc_dec(previous year) - 1",
+  "sql_expression": "",
+  "unit": "ratio",
+  "path": [
+   {
+    "node": "mart.macro_year.inflation_dec_yoy"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "inflation_dec_yoy"
+    ]
+   },
+   {
+    "node": "stg_ipc_index",
+    "columns": [
+     "year",
+     "month",
+     "ipc_index"
+    ]
+   },
+   {
+    "node": "source:anex-IPC-Indices",
+    "filter": "sheet IndicesIPC, rows Mes = Diciembre of year and year - 1"
+   }
+  ]
+ },
+ {
+  "metric_id": "trm_avg",
+  "label_es": "TRM promedio anual",
+  "label_en": "Annual average TRM",
+  "formula": "mean of the TRM over every calendar day of the year",
+  "sql_expression": "",
+  "unit": "COP/USD",
+  "path": [
+   {
+    "node": "mart.macro_year.trm_avg"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "trm_avg"
+    ]
+   },
+   {
+    "node": "stg_trm",
+    "columns": [
+     "valid_from",
+     "valid_to",
+     "trm_cop"
+    ]
+   },
+   {
+    "node": "source:32sa-8pi3",
+    "filter": "unidad = 'COP', every calendar day of the fiscal year"
+   }
+  ]
+ },
+ {
+  "metric_id": "trm_dec31",
+  "label_es": "TRM al 31 de diciembre",
+  "label_en": "TRM on 31 December",
+  "formula": "TRM in force on 31 December",
+  "sql_expression": "",
+  "unit": "COP/USD",
+  "path": [
+   {
+    "node": "mart.macro_year.trm_dec31"
+   },
+   {
+    "node": "int_macro_year",
+    "columns": [
+     "trm_dec31"
+    ]
+   },
+   {
+    "node": "stg_trm",
+    "columns": [
+     "valid_from",
+     "valid_to",
+     "trm_cop"
+    ]
+   },
+   {
+    "node": "source:32sa-8pi3",
+    "filter": "unidad = 'COP' AND vigenciadesde <= '<fiscal_year>-12-31' <= vigenciahasta"
+   }
+  ]
+ },
+ {
+  "metric_id": "reconciliation_abs_diff",
+  "label_es": "Diferencia de conciliación NIIF vs 10.000 empresas",
+  "label_en": "NIIF vs top-10k reconciliation difference",
+  "formula": "abs(niif_value - top10k_value)",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.reconciliation.abs_diff_cop"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "net_income",
+     "total_assets",
+     "total_liabilities",
+     "total_equity"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias' OR concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de activos' OR concepto LIKE 'Total pasivos' OR concepto LIKE 'Patrimonio total') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "stg_top10k",
+    "columns": [
+     "revenue_cop",
+     "net_income_cop",
+     "total_assets_cop",
+     "total_liabilities_cop",
+     "total_equity_cop"
+    ]
+   },
+   {
+    "node": "source:6cat-2gcs",
+    "filter": "a_o_de_corte = <fiscal_year>"
+   }
+  ]
+ },
+ {
+  "metric_id": "restatement_delta",
+  "label_es": "Reexpresión de cifras comparativas",
+  "label_en": "Restated comparative delta",
+  "formula": "restated_value - original_value",
+  "sql_expression": "",
+  "unit": "COP",
+  "path": [
+   {
+    "node": "mart.restatements.delta"
+   },
+   {
+    "node": "int_company_lines",
+    "columns": [
+     "revenue",
+     "net_income",
+     "total_assets",
+     "total_equity"
+    ]
+   },
+   {
+    "node": "int_filing_lines",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop"
+    ]
+   },
+   {
+    "node": "stg_niif_facts",
+    "columns": [
+     "line",
+     "period_kind",
+     "value_cop",
+     "concept_label"
+    ]
+   },
+   {
+    "node": "source:prwj-nzxa",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Ingresos de actividades ordinarias' OR concepto LIKE 'Ganancia (p_rdida)') AND fecha_corte = '<fiscal_year>-12-31'"
+   },
+   {
+    "node": "source:pfdp-zks5",
+    "filter": "periodo = 'Periodo Actual' AND (concepto LIKE 'Total de activos' OR concepto LIKE 'Patrimonio total') AND fecha_corte = '<fiscal_year>-12-31'"
+   }
+  ]
+ }
+]

@@ -1,0 +1,1760 @@
+[
+ {
+  "name": "raw_supersoc_top10k",
+  "layer": "source",
+  "description": "Raw 10.000 Empresas más Grandes del País (Superintendencia de Sociedades), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT nit, raz_n_social, supervisor, regi_n, departamento_domicilio, ciudad_domicilio, ciiu, macrosector, ingresos_operacionales, ganancia_p_rdida, total_activos, total_pasivos, total_patrimonio, a_o_de_corte, 'fy2021' AS _partition FROM read_csv('data/raw/supersoc_top10k/fy2021/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, raz_n_social, supervisor, regi_n, departamento_domicilio, ciudad_domicilio, ciiu, macrosector, ingresos_operacionales, ganancia_p_rdida, total_activos, total_pasivos, total_patrimonio, a_o_de_corte, 'fy2022' AS _partition FROM read_csv('data/raw/supersoc_top10k/fy2022/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, raz_n_social, supervisor, regi_n, departamento_domicilio, ciudad_domicilio, ciiu, macrosector, ingresos_operacionales, ganancia_p_rdida, total_activos, total_pasivos, total_patrimonio, a_o_de_corte, 'fy2023' AS _partition FROM read_csv('data/raw/supersoc_top10k/fy2023/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, raz_n_social, supervisor, regi_n, departamento_domicilio, ciudad_domicilio, ciiu, macrosector, ingresos_operacionales, ganancia_p_rdida, total_activos, total_pasivos, total_patrimonio, a_o_de_corte, 'fy2024' AS _partition FROM read_csv('data/raw/supersoc_top10k/fy2024/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, raz_n_social, supervisor, regi_n, departamento_domicilio, ciudad_domicilio, ciiu, macrosector, ingresos_operacionales, ganancia_p_rdida, total_activos, total_pasivos, total_patrimonio, a_o_de_corte, 'fy2025' AS _partition FROM read_csv('data/raw/supersoc_top10k/fy2025/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:6cat-2gcs"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT as published, for example 899999068.00."
+   },
+   {
+    "name": "raz_n_social",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "supervisor",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "regi_n",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "departamento_domicilio",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "ciudad_domicilio",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "ciiu",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "ingresos_operacionales",
+    "type": "VARCHAR",
+    "description": "Operating revenue as text in trillions of COP with two decimals, for example $ 100.59."
+   },
+   {
+    "name": "ganancia_p_rdida",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "total_activos",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "total_pasivos",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "total_patrimonio",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "a_o_de_corte",
+    "type": "VARCHAR",
+    "description": "Cut-off year as text, for example 2024.00."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 50000,
+  "build_ms": 1350
+ },
+ {
+  "name": "raw_supersoc_niif_income",
+  "layer": "source",
+  "description": "Raw Estados Financieros NIIF - Estado de Resultado Integral (Superintendencia de Sociedades), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2020' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2020/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2021' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2021/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2022' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2022/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2023' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2023/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2024' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2024/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2025' AS _partition FROM read_csv('data/raw/supersoc_niif_income/fy2025/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:prwj-nzxa"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT as published, untouched."
+   },
+   {
+    "name": "numero_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number assigned by Supersociedades."
+   },
+   {
+    "name": "id_punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fecha_corte",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "concepto",
+    "type": "VARCHAR",
+    "description": "XBRL concept label. Accented letters arrive as U+FFFD."
+   },
+   {
+    "name": "periodo",
+    "type": "VARCHAR",
+    "description": "Current or comparative period of the filing."
+   },
+   {
+    "name": "valor",
+    "type": "VARCHAR",
+    "description": "Fact value as text, thousands of COP."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 4130226,
+  "build_ms": 41001
+ },
+ {
+  "name": "raw_supersoc_niif_balance",
+  "layer": "source",
+  "description": "Raw Estados Financieros NIIF - Estado de Situación Financiera (Superintendencia de Sociedades), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2020' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2020/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2021' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2021/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2022' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2022/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2023' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2023/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2024' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2024/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2025' AS _partition FROM read_csv('data/raw/supersoc_niif_balance/fy2025/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:pfdp-zks5"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT as published, untouched."
+   },
+   {
+    "name": "numero_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number assigned by Supersociedades."
+   },
+   {
+    "name": "id_punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fecha_corte",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "concepto",
+    "type": "VARCHAR",
+    "description": "XBRL concept label. Accented letters arrive as U+FFFD."
+   },
+   {
+    "name": "periodo",
+    "type": "VARCHAR",
+    "description": "Current or comparative period of the filing."
+   },
+   {
+    "name": "valor",
+    "type": "VARCHAR",
+    "description": "Fact value as text, thousands of COP."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 4413393,
+  "build_ms": 23989
+ },
+ {
+  "name": "raw_supersoc_niif_cashflow",
+  "layer": "source",
+  "description": "Raw Estados Financieros NIIF - Estado de Flujo de Efectivo (Superintendencia de Sociedades), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2020' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2020/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2021' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2021/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2022' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2022/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2023' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2023/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2024' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2024/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2025' AS _partition FROM read_csv('data/raw/supersoc_niif_cashflow/fy2025/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:ctcp-462n"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT as published, untouched."
+   },
+   {
+    "name": "numero_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number assigned by Supersociedades."
+   },
+   {
+    "name": "id_punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fecha_corte",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "concepto",
+    "type": "VARCHAR",
+    "description": "XBRL concept label. Accented letters arrive as U+FFFD."
+   },
+   {
+    "name": "periodo",
+    "type": "VARCHAR",
+    "description": "Current or comparative period of the filing."
+   },
+   {
+    "name": "valor",
+    "type": "VARCHAR",
+    "description": "Fact value as text, thousands of COP."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 215226,
+  "build_ms": 2419
+ },
+ {
+  "name": "raw_supersoc_niif_caratula",
+  "layer": "source",
+  "description": "Raw Estados Financieros NIIF - Carátula (Superintendencia de Sociedades), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2020' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2020/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2021' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2021/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2022' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2022/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2023' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2023/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2024' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2024/<sha256>.csv', all_varchar=true)\nUNION ALL SELECT nit, numero_radicado, id_punto_entrada, punto_entrada, fecha_corte, concepto, periodo, valor, 'fy2025' AS _partition FROM read_csv('data/raw/supersoc_niif_caratula/fy2025/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:6hqw-m3dm"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT as published, untouched."
+   },
+   {
+    "name": "numero_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number assigned by Supersociedades."
+   },
+   {
+    "name": "id_punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "punto_entrada",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fecha_corte",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "concepto",
+    "type": "VARCHAR",
+    "description": "XBRL concept label. Accented letters arrive as U+FFFD."
+   },
+   {
+    "name": "periodo",
+    "type": "VARCHAR",
+    "description": "Current or comparative period of the filing."
+   },
+   {
+    "name": "valor",
+    "type": "VARCHAR",
+    "description": "Fact value as text, thousands of COP."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 1244544,
+  "build_ms": 12542
+ },
+ {
+  "name": "raw_superfinanciera_trm",
+  "layer": "source",
+  "description": "Raw Tasa de Cambio Representativa del Mercado (TRM) (Superintendencia Financiera de Colombia), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\nSELECT valor, unidad, vigenciadesde, vigenciahasta, 'all' AS _partition FROM read_csv('data/raw/superfinanciera_trm/all/<sha256>.csv', all_varchar=true)\n",
+  "depends_on": [
+   "source:32sa-8pi3"
+  ],
+  "columns": [
+   {
+    "name": "valor",
+    "type": "VARCHAR",
+    "description": "COP per USD as text."
+   },
+   {
+    "name": "unidad",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "vigenciadesde",
+    "type": "VARCHAR",
+    "description": "First day the rate is in force."
+   },
+   {
+    "name": "vigenciahasta",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 8379,
+  "build_ms": 159
+ },
+ {
+  "name": "raw_dane_ipc_index",
+  "layer": "source",
+  "description": "Raw Índices IPC total nacional, serie de empalme, base diciembre 2018 = 100 (DANE), loaded untyped from the stored raw files.",
+  "materialization": "table",
+  "sql": "-- engine/warehouse.py load_raw\n-- parsed by engine/ipc.py from the DANE xlsx annex (sheet IndicesIPC)\n",
+  "depends_on": [
+   "source:anex-IPC-Indices"
+  ],
+  "columns": [
+   {
+    "name": "year",
+    "type": "INTEGER",
+    "description": "Calendar year of the index."
+   },
+   {
+    "name": "month",
+    "type": "INTEGER",
+    "description": "Calendar month of the index."
+   },
+   {
+    "name": "ipc_index",
+    "type": "DOUBLE",
+    "description": "National total CPI, base December 2018 = 100."
+   },
+   {
+    "name": "_partition",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 285,
+  "build_ms": 771
+ },
+ {
+  "name": "seed_ciiu_division",
+  "layer": "source",
+  "description": "Seed table from models/seeds/ciiu_division.csv.",
+  "materialization": "table",
+  "sql": "SELECT * FROM read_csv('models/seeds/ciiu_division.csv', header=true, all_varchar=true)",
+  "depends_on": [],
+  "columns": [
+   {
+    "name": "division",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "section",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "section_name",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 88,
+  "build_ms": 14
+ },
+ {
+  "name": "seed_concept_map",
+  "layer": "source",
+  "description": "Seed table from models/seeds/concept_map.csv.",
+  "materialization": "table",
+  "sql": "SELECT * FROM read_csv('models/seeds/concept_map.csv', header=true, all_varchar=true)",
+  "depends_on": [],
+  "columns": [
+   {
+    "name": "source_id",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "line",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "priority",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "pattern",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 28,
+  "build_ms": 12
+ },
+ {
+  "name": "seed_entry_point_map",
+  "layer": "source",
+  "description": "Seed table from models/seeds/entry_point_map.csv.",
+  "materialization": "table",
+  "sql": "SELECT * FROM read_csv('models/seeds/entry_point_map.csv', header=true, all_varchar=true)",
+  "depends_on": [],
+  "columns": [
+   {
+    "name": "code",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 8,
+  "build_ms": 11
+ },
+ {
+  "name": "stg_ipc_index",
+  "layer": "staging",
+  "description": "DANE national total CPI index, base December 2018 = 100, one row per month.",
+  "materialization": "table",
+  "sql": "-- description: DANE national total CPI index, base December 2018 = 100, one row per month.\nSELECT year, month, ipc_index\nFROM {{ source('dane_ipc_index') }}\n",
+  "depends_on": [
+   "raw_dane_ipc_index"
+  ],
+  "columns": [
+   {
+    "name": "year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "month",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "ipc_index",
+    "type": "DOUBLE",
+    "description": "National total CPI, base December 2018 = 100."
+   }
+  ],
+  "row_count": 285,
+  "build_ms": 9
+ },
+ {
+  "name": "stg_niif_caratula",
+  "layer": "staging",
+  "description": "Filing cover sheet attributes (company name, CIIU, department, city, restatement flag). The API returns U+FFFD for accented letters, shown here as \"?\".",
+  "materialization": "table",
+  "sql": "-- description: Filing cover sheet attributes (company name, CIIU, department, city, restatement flag). The API returns U+FFFD for accented letters, shown here as \"?\".\nSELECT\n    nit_normalize(r.nit) AS nit,\n    year(r.fecha_corte::TIMESTAMP)::INTEGER AS fiscal_year,\n    r.numero_radicado AS filing_radicado,\n    m.line AS attribute,\n    clean_label(r.valor) AS value_text,\n    CASE\n        WHEN nit_normalize(r.nit) IS NULL THEN 'invalid_nit'\n        WHEN m.line IS NULL THEN 'unmapped_concept'\n    END AS _reject_reason\nFROM {{ source('supersoc_niif_caratula') }} r\nLEFT JOIN {{ ref('seed_concept_map') }} m ON m.source_id = 'supersoc_niif_caratula' AND r.concepto LIKE m.pattern\nWHERE r.periodo = 'Periodo Actual'\n",
+  "depends_on": [
+   "raw_supersoc_niif_caratula",
+   "seed_concept_map"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "NIT, digits only, no verification digit."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "filing_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number (numero_radicado)."
+   },
+   {
+    "name": "attribute",
+    "type": "VARCHAR",
+    "description": "Cover-sheet attribute."
+   },
+   {
+    "name": "value_text",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 1244544,
+  "build_ms": 2924
+ },
+ {
+  "name": "stg_niif_facts",
+  "layer": "staging",
+  "description": "NIIF income-statement, balance-sheet and operating-cash-flow facts of the allowlisted concepts. Typed, scope and framework decoded from the entry point, concept mapped to a statement line. Exact upstream duplicates are kept here and removed in int_filing_lines.",
+  "materialization": "table",
+  "sql": "-- description: NIIF income-statement, balance-sheet and operating-cash-flow facts of the allowlisted concepts. Typed, scope and framework decoded from the entry point, concept mapped to a statement line. Exact upstream duplicates are kept here and removed in int_filing_lines.\nSELECT\n    nit_normalize(r.nit) AS nit,\n    year(r.fecha_corte::TIMESTAMP)::INTEGER AS fiscal_year,\n    r.fecha_corte::TIMESTAMP::DATE AS cutoff_date,\n    r.numero_radicado AS filing_radicado,\n    e.framework,\n    e.statement_scope,\n    clean_label(r.concepto) AS concept_label,\n    m.line,\n    m.priority::INTEGER AS priority,\n    CASE r.periodo WHEN 'Periodo Actual' THEN 'current' WHEN 'Periodo Anterior' THEN 'prior' END AS period_kind,\n    thousands_to_cop(r.valor) AS value_cop,\n    r.source_id,\n    CASE\n        WHEN nit_normalize(r.nit) IS NULL THEN 'invalid_nit'\n        WHEN e.code IS NULL THEN 'unknown_entry_point'\n        WHEN m.line IS NULL THEN 'unmapped_concept'\n        WHEN r.periodo NOT IN ('Periodo Actual', 'Periodo Anterior') THEN 'unknown_period'\n        WHEN thousands_to_cop(r.valor) IS NULL THEN 'unparseable_value'\n    END AS _reject_reason\nFROM (\n    SELECT 'supersoc_niif_income' AS source_id, nit, numero_radicado, punto_entrada, fecha_corte, concepto, periodo, valor FROM {{ source('supersoc_niif_income') }}\n    UNION ALL\n    SELECT 'supersoc_niif_balance', nit, numero_radicado, punto_entrada, fecha_corte, concepto, periodo, valor FROM {{ source('supersoc_niif_balance') }}\n    UNION ALL\n    SELECT 'supersoc_niif_cashflow', nit, numero_radicado, punto_entrada, fecha_corte, concepto, periodo, valor FROM {{ source('supersoc_niif_cashflow') }}\n) r\nLEFT JOIN {{ ref('seed_concept_map') }} m ON m.source_id = r.source_id AND r.concepto LIKE m.pattern\nLEFT JOIN {{ ref('seed_entry_point_map') }} e ON e.code = regexp_extract(r.punto_entrada, '^[0-9]+', 0)\n",
+  "depends_on": [
+   "raw_supersoc_niif_income",
+   "raw_supersoc_niif_balance",
+   "raw_supersoc_niif_cashflow",
+   "seed_concept_map",
+   "seed_entry_point_map"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "NIT, digits only, no verification digit."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year of the cut-off date."
+   },
+   {
+    "name": "cutoff_date",
+    "type": "DATE",
+    "description": "Statement cut-off date; always 31 December after the server-side filter."
+   },
+   {
+    "name": "filing_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number (numero_radicado)."
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": "Reporting framework decoded from the entry point."
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": "Statement scope decoded from the entry point."
+   },
+   {
+    "name": "concept_label",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "line",
+    "type": "VARCHAR",
+    "description": "Statement line the concept feeds."
+   },
+   {
+    "name": "priority",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "period_kind",
+    "type": "VARCHAR",
+    "description": "Current period or comparative (Periodo Anterior)."
+   },
+   {
+    "name": "value_cop",
+    "type": "DOUBLE",
+    "description": "Fact value in COP pesos (source reports thousands)."
+   },
+   {
+    "name": "source_id",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 8758845,
+  "build_ms": 22281
+ },
+ {
+  "name": "stg_top10k",
+  "layer": "staging",
+  "description": "10,000 largest companies, typed. Money text \"$ 100.59\" (trillions of COP, two decimals) becomes COP pesos; NIT is digits only.",
+  "materialization": "table",
+  "sql": "-- description: 10,000 largest companies, typed. Money text \"$ 100.59\" (trillions of COP, two decimals) becomes COP pesos; NIT is digits only.\nSELECT\n    nit_normalize(nit) AS nit,\n    TRY_CAST(a_o_de_corte AS DECIMAL(6, 2))::INTEGER AS fiscal_year,\n    clean_label(raz_n_social) AS company_name,\n    supervisor,\n    clean_label(regi_n) AS region,\n    clean_label(departamento_domicilio) AS department,\n    clean_label(ciudad_domicilio) AS city,\n    ciiu_normalize(ciiu) AS ciiu,\n    clean_label(macrosector) AS macrosector,\n    money_trillions_to_cop(ingresos_operacionales) AS revenue_cop,\n    money_trillions_to_cop(ganancia_p_rdida) AS net_income_cop,\n    money_trillions_to_cop(total_activos) AS total_assets_cop,\n    money_trillions_to_cop(total_pasivos) AS total_liabilities_cop,\n    money_trillions_to_cop(total_patrimonio) AS total_equity_cop,\n    CASE\n        WHEN nit_normalize(nit) IS NULL THEN 'invalid_nit'\n        WHEN TRY_CAST(a_o_de_corte AS DECIMAL(6, 2)) IS NULL THEN 'invalid_fiscal_year'\n        WHEN money_trillions_to_cop(ingresos_operacionales) IS NULL OR money_trillions_to_cop(ganancia_p_rdida) IS NULL\n          OR money_trillions_to_cop(total_activos) IS NULL OR money_trillions_to_cop(total_pasivos) IS NULL\n          OR money_trillions_to_cop(total_patrimonio) IS NULL THEN 'unparseable_money'\n    END AS _reject_reason\nFROM {{ source('supersoc_top10k') }}\n",
+  "depends_on": [
+   "raw_supersoc_top10k"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "NIT, digits only, no verification digit."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Cut-off year of the ranking."
+   },
+   {
+    "name": "company_name",
+    "type": "VARCHAR",
+    "description": "Company legal name with correct accents."
+   },
+   {
+    "name": "supervisor",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "region",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "department",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "city",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "ciiu",
+    "type": "VARCHAR",
+    "description": "CIIU Rev. 4 code, four digits."
+   },
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": "Official macrosector."
+   },
+   {
+    "name": "revenue_cop",
+    "type": "BIGINT",
+    "description": "Operating revenue in COP pesos (source unit: 0.01 trillion)."
+   },
+   {
+    "name": "net_income_cop",
+    "type": "BIGINT",
+    "description": "Net income in COP pesos."
+   },
+   {
+    "name": "total_assets_cop",
+    "type": "BIGINT",
+    "description": "Total assets in COP pesos."
+   },
+   {
+    "name": "total_liabilities_cop",
+    "type": "BIGINT",
+    "description": "Total liabilities in COP pesos."
+   },
+   {
+    "name": "total_equity_cop",
+    "type": "BIGINT",
+    "description": "Total equity in COP pesos."
+   }
+  ],
+  "row_count": 50000,
+  "build_ms": 1989
+ },
+ {
+  "name": "stg_trm",
+  "layer": "staging",
+  "description": "Official COP/USD exchange rate (TRM) with its validity window. Weekend and holiday rates span several calendar days.",
+  "materialization": "table",
+  "sql": "-- description: Official COP/USD exchange rate (TRM) with its validity window. Weekend and holiday rates span several calendar days.\nSELECT\n    vigenciadesde::TIMESTAMP::DATE AS valid_from,\n    vigenciahasta::TIMESTAMP::DATE AS valid_to,\n    TRY_CAST(valor AS DOUBLE) AS trm_cop,\n    CASE\n        WHEN TRY_CAST(valor AS DOUBLE) IS NULL OR TRY_CAST(valor AS DOUBLE) <= 0 THEN 'invalid_rate'\n        WHEN vigenciahasta::TIMESTAMP < vigenciadesde::TIMESTAMP THEN 'inverted_validity_window'\n    END AS _reject_reason\nFROM {{ source('superfinanciera_trm') }}\nWHERE unidad = 'COP'\n",
+  "depends_on": [
+   "raw_superfinanciera_trm"
+  ],
+  "columns": [
+   {
+    "name": "valid_from",
+    "type": "DATE",
+    "description": "First day the rate is in force."
+   },
+   {
+    "name": "valid_to",
+    "type": "DATE",
+    "description": "Last day the rate is in force."
+   },
+   {
+    "name": "trm_cop",
+    "type": "DOUBLE",
+    "description": "COP per USD."
+   }
+  ],
+  "row_count": 8379,
+  "build_ms": 39
+ },
+ {
+  "name": "int_company_lines",
+  "layer": "intermediate",
+  "description": "Statement lines pivoted wide, one row per current filing (nit, fiscal_year, statement_scope). Values are COP pesos from the current period; revenue_prior is the comparative column of the same filing.",
+  "materialization": "table",
+  "sql": "-- description: Statement lines pivoted wide, one row per current filing (nit, fiscal_year, statement_scope). Values are COP pesos from the current period; revenue_prior is the comparative column of the same filing.\nSELECT\n    filing_id, nit, fiscal_year, statement_scope, framework,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'revenue') AS revenue,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'cost_of_sales') AS cost_of_sales,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'gross_profit') AS gross_profit,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'admin_expenses') AS admin_expenses,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'selling_expenses') AS selling_expenses,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'operating_income') AS operating_income,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'finance_income') AS finance_income,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'finance_costs') AS finance_costs,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'profit_before_tax') AS profit_before_tax,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'income_tax') AS income_tax,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'net_income') AS net_income,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'total_assets') AS total_assets,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'current_assets') AS current_assets,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'cash') AS cash,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'receivables') AS receivables,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'inventories') AS inventories,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'ppe') AS ppe,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'total_liabilities') AS total_liabilities,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'current_liabilities') AS current_liabilities,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'noncurrent_liabilities') AS noncurrent_liabilities,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'total_equity') AS total_equity,\n    max(value_cop) FILTER (WHERE period_kind = 'current' AND line = 'operating_cash_flow') AS operating_cash_flow,\n    max(value_cop) FILTER (WHERE period_kind = 'prior' AND line = 'revenue') AS revenue_prior\nFROM {{ ref('int_filing_lines') }}\nGROUP BY filing_id, nit, fiscal_year, statement_scope, framework\n",
+  "depends_on": [
+   "int_filing_lines"
+  ],
+  "columns": [
+   {
+    "name": "filing_id",
+    "type": "VARCHAR",
+    "description": "Current filing."
+   },
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "revenue",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "cost_of_sales",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "gross_profit",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "admin_expenses",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "selling_expenses",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "operating_income",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "finance_income",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "finance_costs",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "profit_before_tax",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "income_tax",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "net_income",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "total_assets",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "current_assets",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "cash",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "receivables",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "inventories",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "ppe",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "total_liabilities",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "current_liabilities",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "noncurrent_liabilities",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "total_equity",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "operating_cash_flow",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "revenue_prior",
+    "type": "DOUBLE",
+    "description": ""
+   }
+  ],
+  "row_count": 187151,
+  "build_ms": 8184
+ },
+ {
+  "name": "int_department_region",
+  "layer": "intermediate",
+  "description": "Most frequent region of each department among the 10,000 largest companies (ties broken alphabetically). Classifies companies that only have a department name.",
+  "materialization": "table",
+  "sql": "-- description: Most frequent region of each department among the 10,000 largest companies (ties broken alphabetically). Classifies companies that only have a department name.\nSELECT upper(department) AS department, region, count(*) AS observations\nFROM {{ ref('stg_top10k') }}\nWHERE department IS NOT NULL AND region IS NOT NULL\nGROUP BY upper(department), region\nQUALIFY row_number() OVER (PARTITION BY upper(department) ORDER BY count(*) DESC, region) = 1\n",
+  "depends_on": [
+   "stg_top10k"
+  ],
+  "columns": [
+   {
+    "name": "department",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "region",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "observations",
+    "type": "BIGINT",
+    "description": ""
+   }
+  ],
+  "row_count": 39,
+  "build_ms": 69
+ },
+ {
+  "name": "int_filing_lines",
+  "layer": "intermediate",
+  "description": "Statement-line facts of the current filings, long format, one row per (filing, line, period). Exact upstream duplicates collapse here; when two concepts feed one line the lower priority number wins.",
+  "materialization": "table",
+  "sql": "-- description: Statement-line facts of the current filings, long format, one row per (filing, line, period). Exact upstream duplicates collapse here; when two concepts feed one line the lower priority number wins.\nSELECT\n    v.filing_id, v.nit, v.fiscal_year, v.statement_scope, v.framework,\n    f.line, f.period_kind, f.value_cop\nFROM {{ ref('stg_niif_facts') }} f\nJOIN {{ ref('int_filing_versions') }} v\n  ON v.nit = f.nit AND v.fiscal_year = f.fiscal_year AND v.statement_scope = f.statement_scope AND v.filing_radicado = f.filing_radicado\nWHERE v.is_current\nQUALIFY row_number() OVER (PARTITION BY v.filing_id, f.line, f.period_kind ORDER BY f.priority, f.value_cop) = 1\n",
+  "depends_on": [
+   "stg_niif_facts",
+   "int_filing_versions"
+  ],
+  "columns": [
+   {
+    "name": "filing_id",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "line",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "period_kind",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "value_cop",
+    "type": "DOUBLE",
+    "description": "Statement-line value in COP pesos."
+   }
+  ],
+  "row_count": 7195300,
+  "build_ms": 28254
+ },
+ {
+  "name": "int_filing_versions",
+  "layer": "intermediate",
+  "description": "One row per submitted NIIF filing, ranked within (nit, fiscal_year, statement_scope). The highest numero_radicado among plausible filings is current; the rest are recorded as superseded. A filing is rejected as a suspected pesos-for-thousands unit error when its total assets exceed 100x an independent witness of the same NIT-year: the comparative the next year's filing reports (same scope when available, otherwise the largest of any scope), the 10,000-largest record (individual and separate statements), or the earliest version of the same filing.",
+  "materialization": "table",
+  "sql": "-- description: One row per submitted NIIF filing, ranked within (nit, fiscal_year, statement_scope). The highest numero_radicado among plausible filings is current; the rest are recorded as superseded. A filing is rejected as a suspected pesos-for-thousands unit error when its total assets exceed 100x an independent witness of the same NIT-year: the comparative the next year's filing reports (same scope when available, otherwise the largest of any scope), the 10,000-largest record (individual and separate statements), or the earliest version of the same filing.\nWITH filings AS (\n    SELECT\n        nit, fiscal_year, statement_scope, framework, filing_radicado,\n        max(value_cop) FILTER (WHERE line = 'total_assets' AND period_kind = 'current') AS total_assets_cop\n    FROM {{ ref('stg_niif_facts') }}\n    GROUP BY nit, fiscal_year, statement_scope, framework, filing_radicado\n),\nnext_year_comparative AS (\n    SELECT nit, fiscal_year - 1 AS fiscal_year, statement_scope, max(value_cop) AS comparative_assets\n    FROM {{ ref('stg_niif_facts') }}\n    WHERE line = 'total_assets' AND period_kind = 'prior'\n    GROUP BY nit, fiscal_year - 1, statement_scope\n),\nany_scope_comparative AS (\n    SELECT nit, fiscal_year, max(comparative_assets) AS comparative_assets\n    FROM next_year_comparative\n    GROUP BY nit, fiscal_year\n),\nearliest_version AS (\n    SELECT nit, fiscal_year, statement_scope, min(filing_radicado) AS first_radicado, arg_min(total_assets_cop, filing_radicado) AS first_assets\n    FROM filings\n    GROUP BY nit, fiscal_year, statement_scope\n),\nchecked AS (\n    SELECT\n        f.*,\n        CASE\n            WHEN f.total_assets_cop > 100 * coalesce(s.comparative_assets, a.comparative_assets) AND coalesce(s.comparative_assets, a.comparative_assets) > 0\n                THEN 'suspect_unit_vs_next_year_comparative'\n            WHEN f.statement_scope IN ('individual', 'separate') AND f.total_assets_cop > 100 * t.total_assets_cop AND t.total_assets_cop > 0\n                THEN 'suspect_unit_vs_top10k'\n            WHEN f.filing_radicado > e.first_radicado AND f.total_assets_cop > 100 * e.first_assets AND e.first_assets > 0\n                THEN 'suspect_unit_vs_earlier_version'\n        END AS _reject_reason\n    FROM filings f\n    LEFT JOIN next_year_comparative s ON s.nit = f.nit AND s.fiscal_year = f.fiscal_year AND s.statement_scope = f.statement_scope\n    LEFT JOIN any_scope_comparative a ON a.nit = f.nit AND a.fiscal_year = f.fiscal_year\n    LEFT JOIN {{ ref('stg_top10k') }} t ON t.nit = f.nit AND t.fiscal_year = f.fiscal_year\n    LEFT JOIN earliest_version e ON e.nit = f.nit AND e.fiscal_year = f.fiscal_year AND e.statement_scope = f.statement_scope\n),\nranked AS (\n    SELECT\n        nit || ':' || filing_radicado AS filing_id,\n        nit, fiscal_year, statement_scope, framework, filing_radicado, total_assets_cop,\n        row_number() OVER w AS version_rank,\n        count(*) OVER (PARTITION BY nit, fiscal_year, statement_scope) AS n_versions,\n        row_number() OVER w = 1 AS is_current,\n        CASE WHEN row_number() OVER w > 1 THEN first_value(filing_radicado) OVER w END AS superseded_by_radicado\n    FROM checked\n    WHERE _reject_reason IS NULL\n    WINDOW w AS (PARTITION BY nit, fiscal_year, statement_scope ORDER BY filing_radicado DESC)\n)\nSELECT *, NULL::VARCHAR AS _reject_reason FROM ranked\nUNION ALL BY NAME\nSELECT nit || ':' || filing_radicado AS filing_id, nit, fiscal_year, statement_scope, framework, filing_radicado, total_assets_cop, _reject_reason\nFROM checked\nWHERE _reject_reason IS NOT NULL\n",
+  "depends_on": [
+   "stg_niif_facts",
+   "stg_top10k"
+  ],
+  "columns": [
+   {
+    "name": "filing_id",
+    "type": "VARCHAR",
+    "description": "NIT and filing number joined by a colon."
+   },
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "filing_radicado",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "total_assets_cop",
+    "type": "DOUBLE",
+    "description": ""
+   },
+   {
+    "name": "version_rank",
+    "type": "BIGINT",
+    "description": "1 is the latest filing for the NIT, fiscal year and scope."
+   },
+   {
+    "name": "n_versions",
+    "type": "BIGINT",
+    "description": ""
+   },
+   {
+    "name": "is_current",
+    "type": "BOOLEAN",
+    "description": "True for the latest filing."
+   },
+   {
+    "name": "superseded_by_radicado",
+    "type": "VARCHAR",
+    "description": ""
+   }
+  ],
+  "row_count": 187551,
+  "build_ms": 5460
+ },
+ {
+  "name": "int_identity",
+  "layer": "intermediate",
+  "description": "Company identity per (nit, fiscal_year). Resolution order for name and attributes: 1 top-10k record of the same year, 2 cover sheet of the current filing, 3 latest top-10k record of any year, 4 unresolved placeholder. name_source records which rule won.",
+  "materialization": "table",
+  "sql": "-- description: Company identity per (nit, fiscal_year). Resolution order for name and attributes: 1 top-10k record of the same year, 2 cover sheet of the current filing, 3 latest top-10k record of any year, 4 unresolved placeholder. name_source records which rule won.\nWITH keys AS (\n    SELECT DISTINCT nit, fiscal_year FROM {{ ref('int_filing_versions') }} WHERE is_current\n    UNION\n    SELECT nit, fiscal_year FROM {{ ref('stg_top10k') }}\n),\ntop AS (\n    SELECT *, row_number() OVER (PARTITION BY fiscal_year ORDER BY revenue_cop DESC, nit) AS revenue_rank\n    FROM {{ ref('stg_top10k') }}\n),\ntop_latest AS (\n    SELECT * FROM {{ ref('stg_top10k') }}\n    QUALIFY row_number() OVER (PARTITION BY nit ORDER BY fiscal_year DESC) = 1\n),\ncover AS (\n    SELECT\n        c.nit, c.fiscal_year,\n        max(c.value_text) FILTER (WHERE c.attribute = 'company_name') AS company_name,\n        NULLIF(lpad(regexp_extract(max(c.value_text) FILTER (WHERE c.attribute = 'ciiu'), '^[A-Z]?([0-9]{4})', 1), 4, '0'), '0000') AS ciiu,\n        upper(max(c.value_text) FILTER (WHERE c.attribute = 'department')) AS department,\n        max(c.value_text) FILTER (WHERE c.attribute = 'city') AS city\n    FROM {{ ref('stg_niif_caratula') }} c\n    JOIN {{ ref('int_filing_versions') }} v\n      ON v.nit = c.nit AND v.fiscal_year = c.fiscal_year AND v.filing_radicado = c.filing_radicado\n    WHERE v.is_current\n    GROUP BY c.nit, c.fiscal_year, c.filing_radicado\n    QUALIFY row_number() OVER (PARTITION BY c.nit, c.fiscal_year ORDER BY c.filing_radicado DESC) = 1\n),\nresolved AS (\n    SELECT\n        k.nit, k.fiscal_year,\n        coalesce(t.company_name, cv.company_name, tl.company_name, 'NIT ' || k.nit) AS company_name,\n        CASE\n            WHEN t.company_name IS NOT NULL THEN 'top10k'\n            WHEN cv.company_name IS NOT NULL THEN 'caratula'\n            WHEN tl.company_name IS NOT NULL THEN 'top10k_other_year'\n            ELSE 'unresolved'\n        END AS name_source,\n        coalesce(t.ciiu, cv.ciiu, tl.ciiu) AS ciiu,\n        t.macrosector AS top_macrosector, tl.macrosector AS latest_macrosector,\n        coalesce(t.department, cv.department, tl.department) AS department,\n        coalesce(t.city, cv.city, tl.city) AS city,\n        t.region AS top_region, tl.region AS latest_region,\n        t.nit IS NOT NULL AS in_top10k,\n        t.revenue_rank AS top10k_rank\n    FROM keys k\n    LEFT JOIN top t ON t.nit = k.nit AND t.fiscal_year = k.fiscal_year\n    LEFT JOIN top_latest tl ON tl.nit = k.nit\n    LEFT JOIN cover cv ON cv.nit = k.nit AND cv.fiscal_year = k.fiscal_year\n)\nSELECT\n    r.nit, r.fiscal_year, r.company_name, r.name_source,\n    r.ciiu, d.section AS ciiu_section,\n    coalesce(r.top_macrosector, r.latest_macrosector, sm.macrosector, 'SIN CLASIFICAR') AS macrosector,\n    r.department, r.city,\n    coalesce(r.top_region, dr.region, r.latest_region, 'SIN CLASIFICAR') AS region,\n    r.in_top10k, r.top10k_rank\nFROM resolved r\nLEFT JOIN {{ ref('seed_ciiu_division') }} d ON d.division = substr(r.ciiu, 1, 2)\nLEFT JOIN {{ ref('int_section_macrosector') }} sm ON sm.section = d.section\nLEFT JOIN {{ ref('int_department_region') }} dr ON dr.department = upper(r.department)\n",
+  "depends_on": [
+   "int_filing_versions",
+   "stg_top10k",
+   "stg_niif_caratula",
+   "seed_ciiu_division",
+   "int_section_macrosector",
+   "int_department_region"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "company_name",
+    "type": "VARCHAR",
+    "description": "Resolved company name."
+   },
+   {
+    "name": "name_source",
+    "type": "VARCHAR",
+    "description": "Identity rule that produced the name."
+   },
+   {
+    "name": "ciiu",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "ciiu_section",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": "Macrosector, official or derived from the CIIU section."
+   },
+   {
+    "name": "department",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "city",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "region",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "in_top10k",
+    "type": "BOOLEAN",
+    "description": ""
+   },
+   {
+    "name": "top10k_rank",
+    "type": "BIGINT",
+    "description": ""
+   }
+  ],
+  "row_count": 186647,
+  "build_ms": 3678
+ },
+ {
+  "name": "int_identity_match_report",
+  "layer": "intermediate",
+  "description": "Identity match report. Counts how each NIT-year was resolved and how well the two Supersociedades sources agree on the same company.",
+  "materialization": "table",
+  "sql": "-- description: Identity match report. Counts how each NIT-year was resolved and how well the two Supersociedades sources agree on the same company.\nWITH niif_scope AS (\n    SELECT DISTINCT nit, fiscal_year FROM {{ ref('int_filing_versions') }}\n    WHERE is_current AND statement_scope IN ('individual', 'separate')\n),\ncover AS (\n    SELECT c.nit, c.fiscal_year, max(c.value_text) FILTER (WHERE c.attribute = 'company_name') AS company_name\n    FROM {{ ref('stg_niif_caratula') }} c\n    JOIN {{ ref('int_filing_versions') }} v ON v.nit = c.nit AND v.fiscal_year = c.fiscal_year AND v.filing_radicado = c.filing_radicado AND v.is_current\n    GROUP BY c.nit, c.fiscal_year, c.filing_radicado\n    QUALIFY row_number() OVER (PARTITION BY c.nit, c.fiscal_year ORDER BY c.filing_radicado DESC) = 1\n)\nSELECT fiscal_year, 'name_source:' || name_source AS check_id, 'NIT-years whose name was resolved by this rule' AS description,\n       count(*) AS n, sum(count(*)) OVER (PARTITION BY fiscal_year) AS of_n\nFROM {{ ref('int_identity') }}\nGROUP BY fiscal_year, name_source\nUNION ALL\nSELECT t.fiscal_year, 'top10k_found_in_niif', 'Top-10k NIT-years that also have a current individual or separate NIIF filing',\n       count(s.nit), count(*)\nFROM {{ ref('stg_top10k') }} t LEFT JOIN niif_scope s ON s.nit = t.nit AND s.fiscal_year = t.fiscal_year\nGROUP BY t.fiscal_year\nUNION ALL\nSELECT t.fiscal_year, 'top10k_missing_outside_supersociedades', 'Top-10k NIT-years without a NIIF filing whose supervisor is not Supersociedades (explains the gap by scope of the dataset)',\n       count(*) FILTER (WHERE t.supervisor <> 'SUPERSOCIEDADES'), count(*)\nFROM {{ ref('stg_top10k') }} t LEFT JOIN niif_scope s ON s.nit = t.nit AND s.fiscal_year = t.fiscal_year\nWHERE s.nit IS NULL\nGROUP BY t.fiscal_year\nUNION ALL\nSELECT t.fiscal_year, 'name_agreement', 'Companies present in both sources whose names agree on letters and digits (a lossy \"?\" in the cover sheet matches any run of characters)',\n       count(*) FILTER (WHERE regexp_replace(upper(strip_accents(t.company_name)), '[^A-Z0-9]', '', 'g')\n                        LIKE regexp_replace(regexp_replace(upper(c.company_name), '\\?+', '%', 'g'), '[^A-Z0-9%]', '', 'g')),\n       count(*)\nFROM {{ ref('stg_top10k') }} t JOIN cover c ON c.nit = t.nit AND c.fiscal_year = t.fiscal_year\nGROUP BY t.fiscal_year\n",
+  "depends_on": [
+   "int_filing_versions",
+   "stg_niif_caratula",
+   "int_identity",
+   "stg_top10k"
+  ],
+  "columns": [
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "check_id",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "description",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "n",
+    "type": "BIGINT",
+    "description": ""
+   },
+   {
+    "name": "of_n",
+    "type": "HUGEINT",
+    "description": ""
+   }
+  ],
+  "row_count": 30,
+  "build_ms": 1470
+ },
+ {
+  "name": "int_macro_year",
+  "layer": "intermediate",
+  "description": "Macroeconomic series by fiscal year. IPC is the December index (base Dec 2018 = 100) with its year-over-year change; TRM is the calendar-day average and the rate in force on 31 December.",
+  "materialization": "table",
+  "sql": "-- description: Macroeconomic series by fiscal year. IPC is the December index (base Dec 2018 = 100) with its year-over-year change; TRM is the calendar-day average and the rate in force on 31 December.\nWITH years AS (\n    SELECT DISTINCT fiscal_year FROM {{ ref('stg_niif_facts') }}\n),\nipc AS (\n    SELECT year AS fiscal_year, ipc_index AS ipc_dec_index,\n           ipc_index / lag(ipc_index) OVER (ORDER BY year) - 1 AS inflation_dec_yoy\n    FROM {{ ref('stg_ipc_index') }}\n    WHERE month = 12\n),\ndaily AS (\n    SELECT d::DATE AS day, arg_max(trm_cop, valid_from) AS trm_cop\n    FROM (SELECT trm_cop, valid_from, unnest(generate_series(valid_from, valid_to, INTERVAL 1 DAY)) AS d FROM {{ ref('stg_trm') }})\n    GROUP BY d::DATE\n),\ntrm AS (\n    SELECT year(day) AS fiscal_year,\n           (sum(trm_cop::DECIMAL(18, 4)) / count(*))::DOUBLE AS trm_avg,\n           count(*) AS trm_days,\n           max(trm_cop) FILTER (WHERE month(day) = 12 AND day(day) = 31) AS trm_dec31\n    FROM daily\n    GROUP BY year(day)\n)\nSELECT y.fiscal_year, i.ipc_dec_index, i.inflation_dec_yoy, t.trm_avg, t.trm_dec31, t.trm_days\nFROM years y\nLEFT JOIN ipc i USING (fiscal_year)\nLEFT JOIN trm t USING (fiscal_year)\n",
+  "depends_on": [
+   "stg_niif_facts",
+   "stg_ipc_index",
+   "stg_trm"
+  ],
+  "columns": [
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": ""
+   },
+   {
+    "name": "ipc_dec_index",
+    "type": "DOUBLE",
+    "description": "December national CPI, base December 2018 = 100."
+   },
+   {
+    "name": "inflation_dec_yoy",
+    "type": "DOUBLE",
+    "description": "December-to-December CPI change."
+   },
+   {
+    "name": "trm_avg",
+    "type": "DOUBLE",
+    "description": "Calendar-day average TRM of the year."
+   },
+   {
+    "name": "trm_dec31",
+    "type": "DOUBLE",
+    "description": "TRM in force on 31 December."
+   },
+   {
+    "name": "trm_days",
+    "type": "BIGINT",
+    "description": ""
+   }
+  ],
+  "row_count": 6,
+  "build_ms": 114
+ },
+ {
+  "name": "int_section_macrosector",
+  "layer": "intermediate",
+  "description": "Most frequent official macrosector of each CIIU section among the 10,000 largest companies (ties broken alphabetically). Classifies companies that only have a CIIU code.",
+  "materialization": "table",
+  "sql": "-- description: Most frequent official macrosector of each CIIU section among the 10,000 largest companies (ties broken alphabetically). Classifies companies that only have a CIIU code.\nSELECT d.section, t.macrosector, count(*) AS observations\nFROM {{ ref('stg_top10k') }} t\nJOIN {{ ref('seed_ciiu_division') }} d ON d.division = substr(t.ciiu, 1, 2)\nGROUP BY d.section, t.macrosector\nQUALIFY row_number() OVER (PARTITION BY d.section ORDER BY count(*) DESC, t.macrosector) = 1\n",
+  "depends_on": [
+   "stg_top10k",
+   "seed_ciiu_division"
+  ],
+  "columns": [
+   {
+    "name": "section",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": ""
+   },
+   {
+    "name": "observations",
+    "type": "BIGINT",
+    "description": ""
+   }
+  ],
+  "row_count": 20,
+  "build_ms": 66
+ },
+ {
+  "name": "company_year",
+  "layer": "mart",
+  "description": "Company financial profile. One row per NIT, fiscal year and statement scope: identity, current filing, statement lines in COP, ratios, real growth (IPC) and USD revenue (TRM).",
+  "materialization": "table",
+  "sql": "-- description: Company financial profile. One row per NIT, fiscal year and statement scope: identity, current filing, statement lines in COP, ratios, real growth (IPC) and USD revenue (TRM).\nWITH lines AS (\n    SELECT\n        l.*,\n        coalesce(l.total_liabilities, l.total_assets - l.total_equity) AS total_liabilities_final,\n        l.total_liabilities IS NULL AND l.total_assets IS NOT NULL AND l.total_equity IS NOT NULL AS liabilities_derived\n    FROM {{ ref('int_company_lines') }} l\n),\njoined AS (\n    SELECT\n        l.nit, i.company_name, i.name_source, l.framework, l.statement_scope,\n        i.ciiu, i.ciiu_section, i.macrosector, i.department, i.city, i.region,\n        l.fiscal_year, l.filing_id, v.filing_radicado, v.n_versions,\n        l.revenue, l.cost_of_sales, l.gross_profit, l.admin_expenses, l.selling_expenses, l.operating_income,\n        l.finance_income, l.finance_costs, l.profit_before_tax, l.income_tax, l.net_income,\n        l.total_assets, l.current_assets, l.cash, l.receivables, l.inventories, l.ppe,\n        l.total_liabilities_final AS total_liabilities, l.liabilities_derived,\n        l.current_liabilities,\n        coalesce(l.noncurrent_liabilities, CASE WHEN l.current_liabilities IS NOT NULL THEN l.total_liabilities_final - l.current_liabilities END) AS noncurrent_liabilities,\n        l.noncurrent_liabilities IS NULL AND l.current_liabilities IS NOT NULL AND l.total_liabilities_final IS NOT NULL AS noncurrent_derived,\n        l.total_equity, l.operating_cash_flow, l.revenue_prior,\n        i.in_top10k, i.top10k_rank,\n        m.inflation_dec_yoy, m.trm_avg, m.ipc_dec_index,\n        (SELECT ipc_dec_index FROM {{ ref('int_macro_year') }} WHERE fiscal_year = 2024) AS ipc_dec_2024\n    FROM lines l\n    JOIN {{ ref('int_filing_versions') }} v ON v.filing_id = l.filing_id\n    LEFT JOIN {{ ref('int_identity') }} i ON i.nit = l.nit AND i.fiscal_year = l.fiscal_year\n    LEFT JOIN {{ ref('int_macro_year') }} m ON m.fiscal_year = l.fiscal_year\n)\nSELECT\n    nit, company_name, name_source, framework, statement_scope, ciiu, ciiu_section, macrosector, department, city, region,\n    fiscal_year, filing_id, filing_radicado,\n    revenue, cost_of_sales, gross_profit, admin_expenses, selling_expenses, operating_income,\n    finance_income, finance_costs, profit_before_tax, income_tax, net_income,\n    total_assets, current_assets, cash, receivables, inventories, ppe,\n    total_liabilities, current_liabilities, noncurrent_liabilities, total_equity, operating_cash_flow,\n    CASE WHEN revenue > 0 THEN gross_profit / revenue END AS gross_margin,\n    CASE WHEN revenue > 0 THEN operating_income / revenue END AS operating_margin,\n    CASE WHEN revenue > 0 THEN net_income / revenue END AS net_margin,\n    CASE WHEN total_assets > 0 THEN net_income / total_assets END AS roa,\n    CASE WHEN total_equity > 0 THEN net_income / total_equity END AS roe,\n    CASE WHEN current_liabilities > 0 THEN current_assets / current_liabilities END AS current_ratio,\n    CASE WHEN total_assets > 0 THEN total_liabilities / total_assets END AS debt_ratio,\n    CASE WHEN total_equity > 0 THEN total_assets / total_equity END AS equity_multiplier,\n    CASE WHEN revenue_prior > 0 AND revenue IS NOT NULL THEN revenue / revenue_prior - 1 END AS revenue_growth_nominal,\n    CASE WHEN revenue_prior > 0 AND revenue IS NOT NULL THEN (revenue / revenue_prior) / (1 + inflation_dec_yoy) - 1 END AS revenue_growth_real,\n    revenue / trm_avg AS revenue_usd,\n    revenue * ipc_dec_2024 / ipc_dec_index AS revenue_real_2024_cop,\n    in_top10k, top10k_rank,\n    CASE WHEN NOT liabilities_derived AND total_assets IS NOT NULL AND total_liabilities IS NOT NULL AND total_equity IS NOT NULL\n         THEN abs(total_assets - total_liabilities - total_equity) <= 3000 + 0.0001 * abs(total_assets) END AS balance_check_ok,\n    list_filter([\n        CASE WHEN NOT liabilities_derived AND total_assets IS NOT NULL AND total_liabilities IS NOT NULL AND total_equity IS NOT NULL\n              AND abs(total_assets - total_liabilities - total_equity) > 3000 + 0.0001 * abs(total_assets) THEN 'balance_mismatch' END,\n        CASE WHEN liabilities_derived THEN 'liabilities_derived' END,\n        CASE WHEN noncurrent_derived THEN 'noncurrent_liabilities_derived' END,\n        CASE WHEN revenue IS NULL THEN 'missing_revenue' END,\n        CASE WHEN revenue < 0 THEN 'negative_revenue' END,\n        CASE WHEN total_assets IS NULL THEN 'missing_assets' END,\n        CASE WHEN total_equity < 0 THEN 'negative_equity' END,\n        CASE WHEN total_assets > 0 AND revenue > 1000 * total_assets THEN 'implausible_revenue_to_assets' END,\n        CASE WHEN name_source = 'unresolved' THEN 'name_unresolved' END,\n        CASE WHEN n_versions > 1 THEN 'resubmitted_filing' END\n    ], lambda x: x IS NOT NULL)::VARCHAR[] AS quality_flags\nFROM joined\n",
+  "depends_on": [
+   "int_company_lines",
+   "int_macro_year",
+   "int_filing_versions",
+   "int_identity"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT, digits only, no verification digit."
+   },
+   {
+    "name": "company_name",
+    "type": "VARCHAR",
+    "description": "Resolved company name."
+   },
+   {
+    "name": "name_source",
+    "type": "VARCHAR",
+    "description": "Identity rule that produced the name."
+   },
+   {
+    "name": "framework",
+    "type": "VARCHAR",
+    "description": "NIIF_PLENAS or NIIF_PYMES."
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": "individual, separate, consolidated or combined statements."
+   },
+   {
+    "name": "ciiu",
+    "type": "VARCHAR",
+    "description": "CIIU Rev. 4 code, four digits."
+   },
+   {
+    "name": "ciiu_section",
+    "type": "VARCHAR",
+    "description": "CIIU section letter A to U."
+   },
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": "Macrosector, official or derived from the CIIU section."
+   },
+   {
+    "name": "department",
+    "type": "VARCHAR",
+    "description": "Department of the registered address."
+   },
+   {
+    "name": "city",
+    "type": "VARCHAR",
+    "description": "City of the registered address."
+   },
+   {
+    "name": "region",
+    "type": "VARCHAR",
+    "description": "Region of the company."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year (cut-off 31 December)."
+   },
+   {
+    "name": "filing_id",
+    "type": "VARCHAR",
+    "description": "Current filing identifier (NIT:radicado)."
+   },
+   {
+    "name": "filing_radicado",
+    "type": "VARCHAR",
+    "description": "Filing number of the current filing."
+   },
+   {
+    "name": "revenue",
+    "type": "DOUBLE",
+    "description": "Operating revenue (Ingresos de actividades ordinarias)."
+   },
+   {
+    "name": "cost_of_sales",
+    "type": "DOUBLE",
+    "description": "Cost of sales."
+   },
+   {
+    "name": "gross_profit",
+    "type": "DOUBLE",
+    "description": "Gross profit."
+   },
+   {
+    "name": "admin_expenses",
+    "type": "DOUBLE",
+    "description": "Administrative expenses."
+   },
+   {
+    "name": "selling_expenses",
+    "type": "DOUBLE",
+    "description": "Selling expenses."
+   },
+   {
+    "name": "operating_income",
+    "type": "DOUBLE",
+    "description": "Profit from operating activities."
+   },
+   {
+    "name": "finance_income",
+    "type": "DOUBLE",
+    "description": "Finance income."
+   },
+   {
+    "name": "finance_costs",
+    "type": "DOUBLE",
+    "description": "Finance costs."
+   },
+   {
+    "name": "profit_before_tax",
+    "type": "DOUBLE",
+    "description": "Profit before tax."
+   },
+   {
+    "name": "income_tax",
+    "type": "DOUBLE",
+    "description": "Income tax expense (income)."
+   },
+   {
+    "name": "net_income",
+    "type": "DOUBLE",
+    "description": "Net income for the period."
+   },
+   {
+    "name": "total_assets",
+    "type": "DOUBLE",
+    "description": "Total assets."
+   },
+   {
+    "name": "current_assets",
+    "type": "DOUBLE",
+    "description": "Total current assets."
+   },
+   {
+    "name": "cash",
+    "type": "DOUBLE",
+    "description": "Cash and cash equivalents."
+   },
+   {
+    "name": "receivables",
+    "type": "DOUBLE",
+    "description": "Current trade and other receivables."
+   },
+   {
+    "name": "inventories",
+    "type": "DOUBLE",
+    "description": "Current inventories."
+   },
+   {
+    "name": "ppe",
+    "type": "DOUBLE",
+    "description": "Property, plant and equipment."
+   },
+   {
+    "name": "total_liabilities",
+    "type": "DOUBLE",
+    "description": "Total liabilities; derived as assets minus equity when not reported (flag liabilities_derived)."
+   },
+   {
+    "name": "current_liabilities",
+    "type": "DOUBLE",
+    "description": "Total current liabilities."
+   },
+   {
+    "name": "noncurrent_liabilities",
+    "type": "DOUBLE",
+    "description": "Total non-current liabilities; derived as liabilities minus current when not reported."
+   },
+   {
+    "name": "total_equity",
+    "type": "DOUBLE",
+    "description": "Total equity."
+   },
+   {
+    "name": "operating_cash_flow",
+    "type": "DOUBLE",
+    "description": "Net cash flows from operating activities."
+   },
+   {
+    "name": "gross_margin",
+    "type": "DOUBLE",
+    "description": "gross_profit / revenue, when revenue > 0."
+   },
+   {
+    "name": "operating_margin",
+    "type": "DOUBLE",
+    "description": "operating_income / revenue, when revenue > 0."
+   },
+   {
+    "name": "net_margin",
+    "type": "DOUBLE",
+    "description": "net_income / revenue, when revenue > 0."
+   },
+   {
+    "name": "roa",
+    "type": "DOUBLE",
+    "description": "net_income / total_assets, when assets > 0."
+   },
+   {
+    "name": "roe",
+    "type": "DOUBLE",
+    "description": "net_income / total_equity, when equity > 0."
+   },
+   {
+    "name": "current_ratio",
+    "type": "DOUBLE",
+    "description": "current_assets / current_liabilities, when current liabilities > 0."
+   },
+   {
+    "name": "debt_ratio",
+    "type": "DOUBLE",
+    "description": "total_liabilities / total_assets, when assets > 0."
+   },
+   {
+    "name": "equity_multiplier",
+    "type": "DOUBLE",
+    "description": "total_assets / total_equity, when equity > 0."
+   },
+   {
+    "name": "revenue_growth_nominal",
+    "type": "DOUBLE",
+    "description": "revenue / prior-period revenue - 1, from the comparative column of the same filing."
+   },
+   {
+    "name": "revenue_growth_real",
+    "type": "DOUBLE",
+    "description": "(1 + nominal growth) / (1 + December CPI inflation) - 1."
+   },
+   {
+    "name": "revenue_usd",
+    "type": "DOUBLE",
+    "description": "revenue / average TRM of the fiscal year."
+   },
+   {
+    "name": "revenue_real_2024_cop",
+    "type": "DOUBLE",
+    "description": "revenue restated to December 2024 pesos with the December CPI index."
+   },
+   {
+    "name": "in_top10k",
+    "type": "BOOLEAN",
+    "description": "True when the NIT is in the 10,000 largest of that year (any statement scope)."
+   },
+   {
+    "name": "top10k_rank",
+    "type": "BIGINT",
+    "description": "Rank by operating revenue within the 10,000 largest of that year."
+   },
+   {
+    "name": "balance_check_ok",
+    "type": "BOOLEAN",
+    "description": "Assets equal liabilities plus equity within 3000 COP + 0.01% of assets; null when a side is missing or derived."
+   },
+   {
+    "name": "quality_flags",
+    "type": "VARCHAR[]",
+    "description": "Data quality flags for the row."
+   }
+  ],
+  "row_count": 187151,
+  "build_ms": 5074
+ },
+ {
+  "name": "macro_year",
+  "layer": "mart",
+  "description": "Macroeconomic context by fiscal year: December CPI index and inflation, TRM average and 31 December rate.",
+  "materialization": "table",
+  "sql": "-- description: Macroeconomic context by fiscal year: December CPI index and inflation, TRM average and 31 December rate.\nSELECT fiscal_year, ipc_dec_index, inflation_dec_yoy, trm_avg, trm_dec31\nFROM {{ ref('int_macro_year') }}\n",
+  "depends_on": [
+   "int_macro_year"
+  ],
+  "columns": [
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year."
+   },
+   {
+    "name": "ipc_dec_index",
+    "type": "DOUBLE",
+    "description": "December national CPI, base December 2018 = 100."
+   },
+   {
+    "name": "inflation_dec_yoy",
+    "type": "DOUBLE",
+    "description": "December-to-December CPI change."
+   },
+   {
+    "name": "trm_avg",
+    "type": "DOUBLE",
+    "description": "Calendar-day average TRM of the fiscal year (COP per USD)."
+   },
+   {
+    "name": "trm_dec31",
+    "type": "DOUBLE",
+    "description": "TRM in force on 31 December (COP per USD)."
+   }
+  ],
+  "row_count": 6,
+  "build_ms": 16
+ },
+ {
+  "name": "reconciliation",
+  "layer": "mart",
+  "description": "NIIF statements versus the 10,000-largest dataset for the same NIT-year. The top-10k figures are rounded to 0.01 trillion COP (1e10), so the tolerance is half that unit plus the 1000 COP NIIF reporting unit. Individual statements are compared first, separate ones when no individual exists.",
+  "materialization": "table",
+  "sql": "-- description: NIIF statements versus the 10,000-largest dataset for the same NIT-year. The top-10k figures are rounded to 0.01 trillion COP (1e10), so the tolerance is half that unit plus the 1000 COP NIIF reporting unit. Individual statements are compared first, separate ones when no individual exists.\nWITH niif AS (\n    SELECT nit, fiscal_year, statement_scope, revenue, net_income, total_assets, total_liabilities, total_equity\n    FROM {{ ref('company_year') }}\n    WHERE statement_scope IN ('individual', 'separate')\n    QUALIFY row_number() OVER (PARTITION BY nit, fiscal_year ORDER BY CASE statement_scope WHEN 'individual' THEN 1 ELSE 2 END) = 1\n),\npaired AS (\n    SELECT t.nit, t.fiscal_year, n.statement_scope, m.metric, m.niif_value, m.top10k_value\n    FROM {{ ref('stg_top10k') }} t\n    LEFT JOIN niif n ON n.nit = t.nit AND n.fiscal_year = t.fiscal_year\n    CROSS JOIN LATERAL (VALUES\n        ('revenue', n.revenue, t.revenue_cop),\n        ('net_income', n.net_income, t.net_income_cop),\n        ('total_assets', n.total_assets, t.total_assets_cop),\n        ('total_liabilities', n.total_liabilities, t.total_liabilities_cop),\n        ('total_equity', n.total_equity, t.total_equity_cop)\n    ) AS m(metric, niif_value, top10k_value)\n)\nSELECT\n    nit, fiscal_year, statement_scope, metric,\n    niif_value::DOUBLE AS value_niif_cop,\n    top10k_value::DOUBLE AS value_top10k_cop,\n    abs(niif_value - top10k_value)::DOUBLE AS abs_diff_cop,\n    5000001000::DOUBLE AS tolerance_cop,\n    CASE\n        WHEN niif_value IS NULL OR top10k_value IS NULL THEN 'missing_side'\n        WHEN round(niif_value / 1e10) * 1e10 = top10k_value THEN 'match'\n        WHEN abs(niif_value - top10k_value) <= 5000001000 THEN 'within_rounding'\n        ELSE 'mismatch'\n    END AS status\nFROM paired\n",
+  "depends_on": [
+   "company_year",
+   "stg_top10k"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT of the top-10k record."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year."
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": "NIIF scope compared: individual when it exists, otherwise separate. Null when no NIIF filing was found."
+   },
+   {
+    "name": "metric",
+    "type": "VARCHAR",
+    "description": "Compared figure."
+   },
+   {
+    "name": "value_niif_cop",
+    "type": "DOUBLE",
+    "description": "Value from the NIIF statements, COP."
+   },
+   {
+    "name": "value_top10k_cop",
+    "type": "DOUBLE",
+    "description": "Value from the 10,000-largest dataset, COP."
+   },
+   {
+    "name": "abs_diff_cop",
+    "type": "DOUBLE",
+    "description": "Absolute difference, COP."
+   },
+   {
+    "name": "tolerance_cop",
+    "type": "DOUBLE",
+    "description": "Half of the 1e10 COP source unit plus the 1000 COP NIIF unit."
+   },
+   {
+    "name": "status",
+    "type": "VARCHAR",
+    "description": "Outcome of the comparison."
+   }
+  ],
+  "row_count": 250000,
+  "build_ms": 1092
+ },
+ {
+  "name": "restatements",
+  "layer": "mart",
+  "description": "Restated comparatives. Where the comparative column (\"Periodo Anterior\") of the next year's current filing differs from the value originally reported for that year by more than the 1000 COP reporting unit (smaller differences are rounding, not restatement).",
+  "materialization": "table",
+  "sql": "-- description: Restated comparatives. Where the comparative column (\"Periodo Anterior\") of the next year's current filing differs from the value originally reported for that year by more than the 1000 COP reporting unit (smaller differences are rounding, not restatement).\nSELECT\n    o.nit, o.fiscal_year, o.statement_scope, o.line AS concept,\n    o.value_cop AS original_value,\n    r.value_cop AS restated_value,\n    r.value_cop - o.value_cop AS delta,\n    o.filing_id AS original_filing_id,\n    r.filing_id AS restating_filing_id\nFROM {{ ref('int_filing_lines') }} o\nJOIN {{ ref('int_filing_lines') }} r\n  ON r.nit = o.nit AND r.statement_scope = o.statement_scope AND r.fiscal_year = o.fiscal_year + 1 AND r.line = o.line\nWHERE o.period_kind = 'current' AND r.period_kind = 'prior' AND abs(r.value_cop - o.value_cop) > 1000\n",
+  "depends_on": [
+   "int_filing_lines"
+  ],
+  "columns": [
+   {
+    "name": "nit",
+    "type": "VARCHAR",
+    "description": "Company NIT."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year whose original figure was restated by the next year's filing."
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": "Statement scope."
+   },
+   {
+    "name": "concept",
+    "type": "VARCHAR",
+    "description": "Statement line name."
+   },
+   {
+    "name": "original_value",
+    "type": "DOUBLE",
+    "description": "Value in the current period of the original filing, COP."
+   },
+   {
+    "name": "restated_value",
+    "type": "DOUBLE",
+    "description": "Value in the comparative column of the later filing, COP."
+   },
+   {
+    "name": "delta",
+    "type": "DOUBLE",
+    "description": "Restated minus original, COP."
+   },
+   {
+    "name": "original_filing_id",
+    "type": "VARCHAR",
+    "description": "Original filing."
+   },
+   {
+    "name": "restating_filing_id",
+    "type": "VARCHAR",
+    "description": "Later filing carrying the restated comparative."
+   }
+  ],
+  "row_count": 242975,
+  "build_ms": 4203
+ },
+ {
+  "name": "sector_year",
+  "layer": "mart",
+  "description": "Sector aggregates. One row per macrosector, fiscal year and statement scope. Totals are exact integer sums; percentiles are linear-interpolated quantiles of the per-company ratios.",
+  "materialization": "table",
+  "sql": "-- description: Sector aggregates. One row per macrosector, fiscal year and statement scope. Totals are exact integer sums; percentiles are linear-interpolated quantiles of the per-company ratios.\nSELECT\n    macrosector, fiscal_year, statement_scope,\n    count(*) AS companies,\n    sum(revenue::BIGINT)::DOUBLE AS revenue_total,\n    sum(net_income::BIGINT)::DOUBLE AS net_income_total,\n    quantile_cont(net_margin, 0.25) AS net_margin_p25,\n    quantile_cont(net_margin, 0.50) AS net_margin_p50,\n    quantile_cont(net_margin, 0.75) AS net_margin_p75,\n    quantile_cont(debt_ratio, 0.25) AS debt_ratio_p25,\n    quantile_cont(debt_ratio, 0.50) AS debt_ratio_p50,\n    quantile_cont(debt_ratio, 0.75) AS debt_ratio_p75\nFROM {{ ref('company_year') }}\nGROUP BY macrosector, fiscal_year, statement_scope\n",
+  "depends_on": [
+   "company_year"
+  ],
+  "columns": [
+   {
+    "name": "macrosector",
+    "type": "VARCHAR",
+    "description": "Macrosector."
+   },
+   {
+    "name": "fiscal_year",
+    "type": "INTEGER",
+    "description": "Fiscal year."
+   },
+   {
+    "name": "statement_scope",
+    "type": "VARCHAR",
+    "description": "Statement scope aggregated."
+   },
+   {
+    "name": "companies",
+    "type": "BIGINT",
+    "description": "Companies in the group."
+   },
+   {
+    "name": "revenue_total",
+    "type": "DOUBLE",
+    "description": "Sum of revenue in COP (exact integer sum)."
+   },
+   {
+    "name": "net_income_total",
+    "type": "DOUBLE",
+    "description": "Sum of net income in COP (exact integer sum)."
+   },
+   {
+    "name": "net_margin_p25",
+    "type": "DOUBLE",
+    "description": "25th percentile of net margin."
+   },
+   {
+    "name": "net_margin_p50",
+    "type": "DOUBLE",
+    "description": "Median net margin."
+   },
+   {
+    "name": "net_margin_p75",
+    "type": "DOUBLE",
+    "description": "75th percentile of net margin."
+   },
+   {
+    "name": "debt_ratio_p25",
+    "type": "DOUBLE",
+    "description": "25th percentile of debt ratio."
+   },
+   {
+    "name": "debt_ratio_p50",
+    "type": "DOUBLE",
+    "description": "Median debt ratio."
+   },
+   {
+    "name": "debt_ratio_p75",
+    "type": "DOUBLE",
+    "description": "75th percentile of debt ratio."
+   }
+  ],
+  "row_count": 118,
+  "build_ms": 81
+ }
+]

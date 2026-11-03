@@ -1,0 +1,381 @@
+{
+ "snapshot_id": "2026-11-03T03-41-58Z",
+ "generated_at": "2026-11-03T03:45:21Z",
+ "run_id": "run-20261103T034158Z-replay",
+ "engine_git_sha": "ce92660",
+ "fiscal_years": [
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "sources": [
+  {
+   "source_id": "supersoc_top10k",
+   "publisher": "Superintendencia de Sociedades",
+   "dataset": "6cat-2gcs",
+   "title": "10.000 Empresas más Grandes del País",
+   "url": "https://www.datos.gov.co/resource/6cat-2gcs",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:52:57Z",
+   "files": [
+    {
+     "partition": "fy2021",
+     "path": "data/raw/supersoc_top10k/fy2021/aebe3ae9c4243ad494da9950aad81388ddef5a1babd674a1a953d0b813c692df.csv",
+     "sha256": "aebe3ae9c4243ad494da9950aad81388ddef5a1babd674a1a953d0b813c692df",
+     "bytes": 1812852,
+     "rows": 10000
+    },
+    {
+     "partition": "fy2022",
+     "path": "data/raw/supersoc_top10k/fy2022/94cf721c331d71bea79abbcdb7efdd0255c22632c82e74c53928790d844a93d9.csv",
+     "sha256": "94cf721c331d71bea79abbcdb7efdd0255c22632c82e74c53928790d844a93d9",
+     "bytes": 1813564,
+     "rows": 10000
+    },
+    {
+     "partition": "fy2023",
+     "path": "data/raw/supersoc_top10k/fy2023/ac0cc91d3684f7f15ed73e61de7efd0fddad8de77e1c305ce19b83fdca0aa2f1.csv",
+     "sha256": "ac0cc91d3684f7f15ed73e61de7efd0fddad8de77e1c305ce19b83fdca0aa2f1",
+     "bytes": 1815484,
+     "rows": 10000
+    },
+    {
+     "partition": "fy2024",
+     "path": "data/raw/supersoc_top10k/fy2024/fbdc5da9cdaa9dc08c9e616b59dcafc8349ec22e71ad5934796c8bbab6b86dd7.csv",
+     "sha256": "fbdc5da9cdaa9dc08c9e616b59dcafc8349ec22e71ad5934796c8bbab6b86dd7",
+     "bytes": 1812921,
+     "rows": 10000
+    },
+    {
+     "partition": "fy2025",
+     "path": "data/raw/supersoc_top10k/fy2025/287d2220acd18b50d5bc192511d4a45c37cb0f46903c2c6e63416406a63951ef.csv",
+     "sha256": "287d2220acd18b50d5bc192511d4a45c37cb0f46903c2c6e63416406a63951ef",
+     "bytes": 1846919,
+     "rows": 10000
+    }
+   ]
+  },
+  {
+   "source_id": "supersoc_niif_income",
+   "publisher": "Superintendencia de Sociedades",
+   "dataset": "prwj-nzxa",
+   "title": "Estados Financieros NIIF - Estado de Resultado Integral",
+   "url": "https://www.datos.gov.co/resource/prwj-nzxa",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:57:29Z",
+   "files": [
+    {
+     "partition": "fy2020",
+     "path": "data/raw/supersoc_niif_income/fy2020/851dc4890de2132b1734529783f0a9a7c8f818759801a41cd943b6d80f2d872d.csv",
+     "sha256": "851dc4890de2132b1734529783f0a9a7c8f818759801a41cd943b6d80f2d872d",
+     "bytes": 88481529,
+     "rows": 594931
+    },
+    {
+     "partition": "fy2021",
+     "path": "data/raw/supersoc_niif_income/fy2021/e0f49a22ca6e215e729bedde13ebf4003e35479b5192aa2bff459f0dc82978af.csv",
+     "sha256": "e0f49a22ca6e215e729bedde13ebf4003e35479b5192aa2bff459f0dc82978af",
+     "bytes": 89816366,
+     "rows": 579661
+    },
+    {
+     "partition": "fy2022",
+     "path": "data/raw/supersoc_niif_income/fy2022/829485fce263b672201387226bb6119fc9e393e83cc9fb84b245a51f44c541d4.csv",
+     "sha256": "829485fce263b672201387226bb6119fc9e393e83cc9fb84b245a51f44c541d4",
+     "bytes": 185359948,
+     "rows": 1195525
+    },
+    {
+     "partition": "fy2023",
+     "path": "data/raw/supersoc_niif_income/fy2023/cef8e5d7d2001396a757d708b25604697395ae19caec7177142f69e13e43479b.csv",
+     "sha256": "cef8e5d7d2001396a757d708b25604697395ae19caec7177142f69e13e43479b",
+     "bytes": 97047789,
+     "rows": 625667
+    },
+    {
+     "partition": "fy2024",
+     "path": "data/raw/supersoc_niif_income/fy2024/5ef6e70cbbad86d7ed35d120dd8c10be3ed6c8d9b73d4d42e20ff44e457d54c1.csv",
+     "sha256": "5ef6e70cbbad86d7ed35d120dd8c10be3ed6c8d9b73d4d42e20ff44e457d54c1",
+     "bytes": 90230532,
+     "rows": 581620
+    },
+    {
+     "partition": "fy2025",
+     "path": "data/raw/supersoc_niif_income/fy2025/0801781cb5aa503548fa6242fa588d610aaeff5d71068475bf19bc07c40e6900.csv",
+     "sha256": "0801781cb5aa503548fa6242fa588d610aaeff5d71068475bf19bc07c40e6900",
+     "bytes": 85721059,
+     "rows": 552822
+    }
+   ]
+  },
+  {
+   "source_id": "supersoc_niif_balance",
+   "publisher": "Superintendencia de Sociedades",
+   "dataset": "pfdp-zks5",
+   "title": "Estados Financieros NIIF - Estado de Situación Financiera",
+   "url": "https://www.datos.gov.co/resource/pfdp-zks5",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:59:34Z",
+   "files": [
+    {
+     "partition": "fy2020",
+     "path": "data/raw/supersoc_niif_balance/fy2020/7c68561942af3dc435a15a230471a2a8a9e99265e65acbcbe3726ad6a386bc5c.csv",
+     "sha256": "7c68561942af3dc435a15a230471a2a8a9e99265e65acbcbe3726ad6a386bc5c",
+     "bytes": 99017236,
+     "rows": 617373
+    },
+    {
+     "partition": "fy2021",
+     "path": "data/raw/supersoc_niif_balance/fy2021/d05c5d1ab557cf8ae487b2f00857ad1e88adfe6f5c987d9a51367f30d0bb4c63.csv",
+     "sha256": "d05c5d1ab557cf8ae487b2f00857ad1e88adfe6f5c987d9a51367f30d0bb4c63",
+     "bytes": 103528232,
+     "rows": 622083
+    },
+    {
+     "partition": "fy2022",
+     "path": "data/raw/supersoc_niif_balance/fy2022/b83ad42f5c83800d5d916e4fecf68f6d36a289dca0be0d7e955c5f1eb7530523.csv",
+     "sha256": "b83ad42f5c83800d5d916e4fecf68f6d36a289dca0be0d7e955c5f1eb7530523",
+     "bytes": 213856466,
+     "rows": 1284499
+    },
+    {
+     "partition": "fy2023",
+     "path": "data/raw/supersoc_niif_balance/fy2023/de7f3f6689da1d909086299f15bd6a325afc27fdaa1829991c31839834b60b40.csv",
+     "sha256": "de7f3f6689da1d909086299f15bd6a325afc27fdaa1829991c31839834b60b40",
+     "bytes": 111900823,
+     "rows": 672086
+    },
+    {
+     "partition": "fy2024",
+     "path": "data/raw/supersoc_niif_balance/fy2024/59d96b6798fa6bae3629ffc4b2d5e08969fdeec83c7df38349c3aab2a3e3a6f6.csv",
+     "sha256": "59d96b6798fa6bae3629ffc4b2d5e08969fdeec83c7df38349c3aab2a3e3a6f6",
+     "bytes": 103878690,
+     "rows": 624111
+    },
+    {
+     "partition": "fy2025",
+     "path": "data/raw/supersoc_niif_balance/fy2025/e2c95814f3cc3c364f58736e8d64741f613ed59fc593514a5b22d1f72d8a0c4e.csv",
+     "sha256": "e2c95814f3cc3c364f58736e8d64741f613ed59fc593514a5b22d1f72d8a0c4e",
+     "bytes": 98772664,
+     "rows": 593241
+    }
+   ]
+  },
+  {
+   "source_id": "supersoc_niif_cashflow",
+   "publisher": "Superintendencia de Sociedades",
+   "dataset": "ctcp-462n",
+   "title": "Estados Financieros NIIF - Estado de Flujo de Efectivo",
+   "url": "https://www.datos.gov.co/resource/ctcp-462n",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:52:41Z",
+   "files": [
+    {
+     "partition": "fy2020",
+     "path": "data/raw/supersoc_niif_cashflow/fy2020/603b6862e0777b07047d478bb1f2368c8761b25222742e2add337ed31eae5b8d.csv",
+     "sha256": "603b6862e0777b07047d478bb1f2368c8761b25222742e2add337ed31eae5b8d",
+     "bytes": 6259041,
+     "rows": 30789
+    },
+    {
+     "partition": "fy2021",
+     "path": "data/raw/supersoc_niif_cashflow/fy2021/0381b7975a0f81aedf8ee0fb383fc4dbc42842a1f5cba26e33fb4cd3fade185f.csv",
+     "sha256": "0381b7975a0f81aedf8ee0fb383fc4dbc42842a1f5cba26e33fb4cd3fade185f",
+     "bytes": 6325080,
+     "rows": 30191
+    },
+    {
+     "partition": "fy2022",
+     "path": "data/raw/supersoc_niif_cashflow/fy2022/3c399f3e0a36d2b36e53c258489702a739f9a00e549aab68170998b1331da553.csv",
+     "sha256": "3c399f3e0a36d2b36e53c258489702a739f9a00e549aab68170998b1331da553",
+     "bytes": 13101772,
+     "rows": 62508
+    },
+    {
+     "partition": "fy2023",
+     "path": "data/raw/supersoc_niif_cashflow/fy2023/40014ca0e06eb3ad3d682e24819ae66a70daf94b8fc39a3da141bcbf6ed9c859.csv",
+     "sha256": "40014ca0e06eb3ad3d682e24819ae66a70daf94b8fc39a3da141bcbf6ed9c859",
+     "bytes": 6850327,
+     "rows": 32689
+    },
+    {
+     "partition": "fy2024",
+     "path": "data/raw/supersoc_niif_cashflow/fy2024/95089dc0c53598eb799e3e74a71e8d70aa3d12ed8dc09dbd818d29453cb651ce.csv",
+     "sha256": "95089dc0c53598eb799e3e74a71e8d70aa3d12ed8dc09dbd818d29453cb651ce",
+     "bytes": 6350550,
+     "rows": 30301
+    },
+    {
+     "partition": "fy2025",
+     "path": "data/raw/supersoc_niif_cashflow/fy2025/e6bde29a716a273ff427c39a8c88cd70cec249803454713ea9c81cf1c56b2214.csv",
+     "sha256": "e6bde29a716a273ff427c39a8c88cd70cec249803454713ea9c81cf1c56b2214",
+     "bytes": 6022760,
+     "rows": 28748
+    }
+   ]
+  },
+  {
+   "source_id": "supersoc_niif_caratula",
+   "publisher": "Superintendencia de Sociedades",
+   "dataset": "6hqw-m3dm",
+   "title": "Estados Financieros NIIF - Carátula",
+   "url": "https://www.datos.gov.co/resource/6hqw-m3dm",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:54:20Z",
+   "files": [
+    {
+     "partition": "fy2020",
+     "path": "data/raw/supersoc_niif_caratula/fy2020/166e6da42d63e45b5dc1aa5bbc0ef73fa9befd6531b880af14e545d193371565.csv",
+     "sha256": "166e6da42d63e45b5dc1aa5bbc0ef73fa9befd6531b880af14e545d193371565",
+     "bytes": 29613454,
+     "rows": 156483
+    },
+    {
+     "partition": "fy2021",
+     "path": "data/raw/supersoc_niif_caratula/fy2021/5187a54d4e36907529c7cdb76454ce999737b28d6cea42d72845a8189c750c57.csv",
+     "sha256": "5187a54d4e36907529c7cdb76454ce999737b28d6cea42d72845a8189c750c57",
+     "bytes": 29940754,
+     "rows": 153183
+    },
+    {
+     "partition": "fy2022",
+     "path": "data/raw/supersoc_niif_caratula/fy2022/e970a2f2597ecf808a63f1a126b8ac49f4b64e48fd010aa2dd2a6e0a85bcf949.csv",
+     "sha256": "e970a2f2597ecf808a63f1a126b8ac49f4b64e48fd010aa2dd2a6e0a85bcf949",
+     "bytes": 91844230,
+     "rows": 469824
+    },
+    {
+     "partition": "fy2023",
+     "path": "data/raw/supersoc_niif_caratula/fy2023/ccb926da37fb68139b482fd0e4c5ed2f1d414ecc352bd4b69fb0622207d05c39.csv",
+     "sha256": "ccb926da37fb68139b482fd0e4c5ed2f1d414ecc352bd4b69fb0622207d05c39",
+     "bytes": 32401817,
+     "rows": 165708
+    },
+    {
+     "partition": "fy2024",
+     "path": "data/raw/supersoc_niif_caratula/fy2024/f97abe75c5b26c0c026098c9d8f57be22e43c28c5dec21d279999c637930f249.csv",
+     "sha256": "f97abe75c5b26c0c026098c9d8f57be22e43c28c5dec21d279999c637930f249",
+     "bytes": 30017083,
+     "rows": 153505
+    },
+    {
+     "partition": "fy2025",
+     "path": "data/raw/supersoc_niif_caratula/fy2025/9f445398df4443ad5ecab6ce9f2645468b47a556e47793cd94edf7afd8b782d9.csv",
+     "sha256": "9f445398df4443ad5ecab6ce9f2645468b47a556e47793cd94edf7afd8b782d9",
+     "bytes": 28514833,
+     "rows": 145841
+    }
+   ]
+  },
+  {
+   "source_id": "superfinanciera_trm",
+   "publisher": "Superintendencia Financiera de Colombia",
+   "dataset": "32sa-8pi3",
+   "title": "Tasa de Cambio Representativa del Mercado (TRM)",
+   "url": "https://www.datos.gov.co/resource/32sa-8pi3",
+   "license": "Creative Commons Attribution | Share Alike 4.0 International",
+   "fetched_at": "2026-11-03T02:52:12Z",
+   "files": [
+    {
+     "partition": "all",
+     "path": "data/raw/superfinanciera_trm/all/c9f707622d51af772ebbd4df0887bc5c589f81e0f51ece260bf4690ea1c90006.csv",
+     "sha256": "c9f707622d51af772ebbd4df0887bc5c589f81e0f51ece260bf4690ea1c90006",
+     "bytes": 567904,
+     "rows": 8379
+    }
+   ]
+  },
+  {
+   "source_id": "dane_ipc_index",
+   "publisher": "DANE",
+   "dataset": "anex-IPC-Indices",
+   "title": "Índices IPC total nacional, serie de empalme, base diciembre 2018 = 100",
+   "url": "https://www.dane.gov.co/index.php/estadisticas-por-tema/precios-y-costos/indice-de-precios-al-consumidor-ipc",
+   "license": "Public DANE statistical annex (no license stated in the file)",
+   "fetched_at": "2026-11-03T03:31:39Z",
+   "files": [
+    {
+     "partition": "all",
+     "path": "data/raw/dane_ipc_index/all/56f8e5e6e9d235d411e487b2284beba1be8eaeee69b7b9516bfa8ea8443c0676.xlsx",
+     "sha256": "56f8e5e6e9d235d411e487b2284beba1be8eaeee69b7b9516bfa8ea8443c0676",
+     "bytes": 40533,
+     "rows": null
+    }
+   ]
+  }
+ ],
+ "row_counts": {
+  "company_year": 187151,
+  "int_company_lines": 187151,
+  "int_department_region": 39,
+  "int_filing_lines": 7195300,
+  "int_filing_versions": 187551,
+  "int_identity": 186647,
+  "int_identity_match_report": 30,
+  "int_macro_year": 6,
+  "int_section_macrosector": 20,
+  "macro_year": 6,
+  "raw_dane_ipc_index": 285,
+  "raw_superfinanciera_trm": 8379,
+  "raw_supersoc_niif_balance": 4413393,
+  "raw_supersoc_niif_caratula": 1244544,
+  "raw_supersoc_niif_cashflow": 215226,
+  "raw_supersoc_niif_income": 4130226,
+  "raw_supersoc_top10k": 50000,
+  "reconciliation": 250000,
+  "restatements": 242975,
+  "sector_year": 118,
+  "seed_ciiu_division": 88,
+  "seed_concept_map": 28,
+  "seed_entry_point_map": 8,
+  "stg_ipc_index": 285,
+  "stg_niif_caratula": 1244544,
+  "stg_niif_facts": 8758845,
+  "stg_top10k": 50000,
+  "stg_trm": 8379
+ },
+ "marts": {
+  "company_year": {
+   "file": "marts/company_year.parquet",
+   "bytes": 37853196,
+   "rows": 187151,
+   "content_hash": "91e047f1086fbb23"
+  },
+  "macro_year": {
+   "file": "marts/macro_year.parquet",
+   "bytes": 1003,
+   "rows": 6,
+   "content_hash": "42992d219a0577ef"
+  },
+  "reconciliation": {
+   "file": "marts/reconciliation.parquet",
+   "bytes": 2601118,
+   "rows": 250000,
+   "content_hash": "19e006251c50dc81"
+  },
+  "restatements": {
+   "file": "marts/restatements.parquet",
+   "bytes": 4772038,
+   "rows": 242975,
+   "content_hash": "e4ad662a29bab7b2"
+  },
+  "sector_year": {
+   "file": "marts/sector_year.parquet",
+   "bytes": 10049,
+   "rows": 118,
+   "content_hash": "3820cd01f2667af8"
+  }
+ },
+ "host": {
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "12th Gen Intel(R) Core(TM) i7-1255U",
+  "cores": 12,
+  "ram_gb": 31.7,
+  "python": "3.14.2",
+  "duckdb": "2.0.0"
+ },
+ "evidence": "MEASURED"
+}

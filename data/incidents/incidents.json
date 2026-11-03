@@ -1,0 +1,50 @@
+[
+ {
+  "incident_id": "INC-001",
+  "title_es": "Filings reales con cifras en pesos en lugar de miles",
+  "title_en": "Real filings reported in pesos instead of thousands",
+  "injected": "none (real upstream data). The first full build over the official files failed on its own: some NIIF filings carry values 1000x too large.",
+  "detected_by": "test.reconciliation (reconciliation.unit_mixup_1000x)",
+  "failed_run_id": "run-20261103T023942Z-full",
+  "diagnosis": "The reconciliation mart compares NIIF figures with the 10,000-largest dataset. reconciliation.unit_mixup_1000x returned 4 rows, all NIT 900098985 FY2021 (separate statements): total equity 29.67 trillion COP in NIIF against 0.03 trillion in the top-10k dataset, a ratio of about 1000. The company's FY2021 separate filing reports total assets of 68.09 trillion COP, while the FY2022 filing gives the same year's comparative as 68.09 billion COP, so the FY2021 filing was submitted in pesos where the XBRL taxonomy expects thousands. Publish was blocked (upstream_failed) because the error-severity test failed. Searching int_filing_versions for filings whose total assets exceed 100x the next year's comparative found 81 such filings in FY2020 to FY2024, which the top-10k check alone could not see.",
+  "fix": "int_filing_versions rejects a filing whose total assets exceed 100x the comparative the same NIT reports for that year in the next year's filing (same scope, otherwise the largest of any scope). Rejected filings go to the quarantine table with reason suspect_unit_vs_next_year_comparative, so the current filing is the latest plausible one. 81 filings were quarantined by this rule; the reconciliation test passed.",
+  "verified_run_id": "run-20261103T025206Z-full",
+  "evidence": "MEASURED"
+ },
+ {
+  "incident_id": "INC-002",
+  "title_es": "Deriva de esquema: la columna valor cambia de nombre",
+  "title_en": "Schema drift: the valor column is renamed upstream",
+  "injected": "--inject schema_drift: in the downloaded FY2023 partition of the NIIF balance sheet the header of the column valor is rewritten to valor_cop, as if the publisher had renamed it. The raw file is stored under data/raw/_injected and never replaces the clean one.",
+  "detected_by": "test.raw_supersoc_niif_balance (raw_supersoc_niif_balance.schema_drift and raw_supersoc_niif_balance.valor.not_null)",
+  "failed_run_id": "run-20261103T030854Z-incremental-schema_drift",
+  "diagnosis": "The raw loader recorded a column_missing event for fy2023 and filled valor with NULL instead of crashing. The contract test raw_supersoc_niif_balance.valor.not_null failed with 672,086 rows and schema_drift with 1 event, so the gate stopped the build: 24 downstream tasks ended upstream_failed and nothing was published. The raw file header shows valor_cop where the other five partitions show valor.",
+  "fix": "Sources can declare column aliases (engine/sources.py, column_aliases={'valor': ('valor_cop',)} for the NIIF datasets). engine/warehouse.py load_raw reads the aliased column under its canonical name and records a column_alias event, surfaced by the warn-level test raw_supersoc_niif_balance.column_alias_used. A column that is missing with no alias still fails the build.",
+  "verified_run_id": "run-20261103T031055Z-incremental-schema_drift",
+  "evidence": "MEASURED"
+ },
+ {
+  "incident_id": "INC-003",
+  "title_es": "Corte de red durante la paginación de una descarga",
+  "title_en": "Network outage in the middle of a paginated download",
+  "injected": "--inject net_outage: after the first page of the FY2023 income-statement download (4 pages of 200,000 rows) every request fails with a connection reset for 20 seconds.",
+  "detected_by": "ingest.supersoc_niif_income",
+  "failed_run_id": "run-20261103T031502Z-incremental-net_outage",
+  "diagnosis": "Page 1 failed three times (backoff 1 s and 2 s, 3 s in total) and the retry budget of 3 attempts ended before the 20 s outage did. ingest.supersoc_niif_income failed with IngestError and 26 downstream tasks ended upstream_failed. Because each page is retried on its own, the pages already downloaded were not repeated and no partial file was stored.",
+  "fix": "engine/ingest.py RETRY raised from 3 to 7 attempts with exponential backoff 1, 2, 4, 8, 16 and 32 s, a window of 63 s. Retry resumes at the failed page, so a recovered download neither skips nor duplicates rows.",
+  "verified_run_id": "run-20261103T031601Z-incremental-net_outage",
+  "evidence": "MEASURED"
+ },
+ {
+  "incident_id": "INC-004",
+  "title_es": "Filings reenviados con unidades equivocadas",
+  "title_en": "Re-submitted filings with the wrong unit",
+  "injected": "--inject resubmission_unit_mixup: every 40th FY2025 filing of the four NIIF datasets is re-submitted with a later radicado (year-99-sequence) and all values multiplied by 1000.",
+  "detected_by": "test.reconciliation (reconciliation.unit_mixup_1000x and reconciliation.balance_sheet_mismatch_rate)",
+  "failed_run_id": "run-20261103T032012Z-incremental-resubmission_unit_mixup",
+  "diagnosis": "The newest radicado wins, so the inflated re-submissions became the current filings. The next-year-comparative guard from INC-001 cannot see FY2025 (there is no FY2026 filing). The accounting identity still holds because every line is scaled together, but reconciliation.unit_mixup_1000x returned 517 rows and the balance-sheet mismatch rate failed (236 of 43,511 liabilities and 243 of 43,511 equity figures disagreed). int_filing_versions showed pairs of filings for the same NIT, year and scope with total assets in a ratio of exactly 1000.",
+  "fix": "int_filing_versions gained two more witnesses: a filing is also rejected when its total assets exceed 100x the 10,000-largest record of the same NIT-year (individual and separate scopes) or 100x the earliest version of the same filing. 751 more filings were quarantined under the injection; on clean data the rules quarantine 82 filings in total.",
+  "verified_run_id": "run-20261103T032438Z-incremental-resubmission_unit_mixup",
+  "evidence": "MEASURED"
+ }
+]

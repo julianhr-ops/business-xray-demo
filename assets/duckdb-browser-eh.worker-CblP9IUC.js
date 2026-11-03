@@ -1,0 +1,1 @@
+var e=`/business-xray-demo/assets/duckdb-browser-eh.worker-CwdVMcbT.js`;export{e as default};

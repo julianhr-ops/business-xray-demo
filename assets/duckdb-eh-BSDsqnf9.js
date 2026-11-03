@@ -1,0 +1,1 @@
+var e=`/business-xray-demo/assets/duckdb-eh-CfdE9-rk.wasm`;export{e as default};
